@@ -21,7 +21,7 @@
     <h3>Ecosystem</h3>
     <ul>
       <li><a href="https://router.vuejs.org" target="_blank">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank">vuex</a></li>
+      <li><a href="https://vuex.vuejs.org" target="_blank">{{checked}}</a></li>
       <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank">vue-devtools</a></li>
       <li><a href="https://vue-loader.vuejs.org" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
@@ -31,14 +31,25 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: "Login",
   props: {
     msg: String
-  }
+  },
+  methods: {
+    check() {
+      this.checked = !this.checked;
+    }
+  },
+  mounted () {
+    console.log()
+    this.check();
+  },
+  data: () => ({
+    checked: false,
+  })
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import "HelloWorld.css";
+  @import "Login.css";
 </style>
