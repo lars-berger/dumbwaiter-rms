@@ -1,10 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Vuetify from 'vuetify';
-
-import Login from './components/Login';
-// import Register from './components/Register/Register.vue'
-// import Dashboard from './components/Dashboard/Dashboard.vue'
+import LoginRegister from './containers/LoginRegister/LoginRegister.vue';
+import Dashboard from './containers/Dashboard/Dashboard.vue'
 
 Vue.use(VueRouter);
 Vue.use(Vuetify);
@@ -14,15 +12,13 @@ const router = new VueRouter({
   mode: 'history',
   base: __dirname,
   routes: [
-    { path: '/', component: Login },
-    // { path: '/register', component: Register },
-    // { path: '/dashboard', component: Dashboard }
+    { path: '/', component: LoginRegister },
+    { path: '/register', component: LoginRegister },
+    { path: '/dashboard', component: Dashboard }
   ],
 });
 
 new Vue({
   router,
-  render: h => {
-    return <router-view />;
-  },
+  render: h => <router-view />,
 }).$mount('#app');
