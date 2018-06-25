@@ -1,0 +1,125 @@
+.Dashboard {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+/* ********************************************************* */
+/*                        NAVBAR                             */
+/* ********************************************************* */
+
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  height: 4.5rem;
+  padding-right: 2vw;
+  background-color: white;
+  font-family: sans-serif;
+  color: rgb(71, 71, 71);
+  border-bottom: 0.1rem solid rgb(71, 71, 71);
+}
+
+.navbar > ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.navbar i {
+  color: rgb(71, 71, 71);
+  font-size: 1.5rem;
+}
+
+.navbar-name {
+  margin-top: -0.1rem;
+  margin-left: 2.5rem;
+}
+
+i.dropdown-icon {
+  margin-left: 1rem;
+  font-size: 2rem;
+}
+
+.dash-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+/* ********************************************************* */
+/*                        SIDEBAR                            */
+/* ********************************************************* */
+
+.sidebar {
+  height: 100%;
+  width: 4.5rem;
+  background-color: white;
+  border-right: 0.1rem solid rgb(71, 71, 71);
+}
+
+.sidebar-hamburger {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  height: 4.5rem;
+  border-bottom: 0.1rem solid rgb(71, 71, 71);
+}
+
+.sidebar i {
+  color: rgb(71, 71, 71);
+  font-size: 1.7em;
+}
+
+.sidebar-content {
+  display: flex;
+  height: calc(100% - 8rem);
+  align-items: center;
+}
+
+.sidebar-content ul {
+  width: 100%;
+}
+
+.sidebar-content ul li {
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  margin-bottom: 1.5rem;
+  width: calc(100% + 0.05rem);
+  border-right: 0.1rem solid transparent;
+}
+
+.sidebar-content ul li.selected {
+  border-right: 0.1rem solid blue;
+}
+
+.sidebar-content ul li.selected i {
+  color: blue;
+}
+
+/* ********************************************************* */
+/*                      ORDERS PAGE                          */
+/* ********************************************************* */
+
+.content {
+  width: 100%;
+  background-color: white;
+  padding: 1.5rem;
+}
+
+
+.orders-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.order {
+  background-color: rgb(228, 228, 228);
+  margin: 1rem;
+}
