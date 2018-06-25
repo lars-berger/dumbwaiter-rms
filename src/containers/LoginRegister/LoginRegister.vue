@@ -23,7 +23,7 @@ export default {
   <div class="Login">
     <div class="container">
       <div class="logo-container">
-        <img class="logo-img" src="./temp-logo2.png" >
+        <img class="logo-img" src="@/assets/images/temp-logo2.png" >
       </div>
       <div class="card">
         <div class="card-container">
@@ -36,5 +36,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@import '@/assets/sass/materialize.scss';
 @import 'LoginRegister.css';
 </style>
