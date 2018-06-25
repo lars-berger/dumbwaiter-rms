@@ -1,10 +1,12 @@
 <script>
   import TopNav from '@/components/TopNav/TopNav.vue';
+  import SideNav from '@/components/SideNav/SideNav.vue';
   export default {
     name: 'Login',
     props: {},
     components: {
       TopNav,
+      SideNav,
     },
     data: () => ({
       showLogin: true,
@@ -14,48 +16,21 @@
 
 <template>
   <div class="Dashboard">
-    <div class="sidebar">
-      <a href="#">
-        <div class="sidebar-hamburger">
-          <i class="material-icons">notes</i>
-        </div>
-      </a>
-      <div class="sidebar-content">
-        <ul>
-          <a href="#">
-            <li class="selected">
-              <i class="material-icons">assignment_late</i>
-            </li>
-          </a>
-          <a href="#">
-            <li>
-              <i class="material-icons">fastfood</i>
-            </li>
-          </a>
-          <a href="#">
-            <li>
-              <i class="material-icons">view_quilt</i>
-            </li>
-          </a>
-          <a href="#">
-            <li>
-              <i class="material-icons">settings</i>
-            </li>
-          </a>
-        </ul>
-      </div>
-    </div>
+    <SideNav />
 
     <div class="dash-container">
       <TopNav />
 
-
       <div class="content">
         <h1>MENU</h1>
 
-        <div class="subnav">
-          <ul class="subnav-left">
-            <a class="subnav-selected" href="#">
+      <button>+ FOOD</button>
+      <button>+ DRINK</button>
+      <button>+ DESERT</button>
+      
+        <div class="menu-nav">
+          <ul class="menu-nav-left">
+            <a class="menu-nav-selected" href="#">
               <li>FOOD</li>
             </a>
             <a href="#">
@@ -78,5 +53,5 @@
 </template>
 
 <style lang="scss" scoped>
-  @import 'Dashboard.css';
+  @import 'Menu.css';
 </style>
