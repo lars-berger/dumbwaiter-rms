@@ -1,37 +1,37 @@
 <script>
-  export default {
-    name: 'Register',
-    props: {
-      msg: String,
+export default {
+  name: 'Register',
+  props: {
+    msg: String,
+  },
+  data: () => ({
+    register: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
     },
-    data: () => ({
-      register: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-      },
-    }),
-    methods: {
-      handleSubmit() {
-        fetch('http://localhost:8080/register', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: this.register.email,
-            password: this.register.password,
-          }),
-        })
-          .then(res => res.json())
-          .then(data => {
-            this.$router.push('/dashboard');
-          });
-      },
+  }),
+  methods: {
+    handleSubmit() {
+      fetch('http://localhost:8080/register', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: this.register.email,
+          password: this.register.password,
+        }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          this.$router.push('/dashboard');
+        });
     },
-  };
+  },
+};
 </script>
 
 <template>

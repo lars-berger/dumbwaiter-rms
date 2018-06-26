@@ -1,22 +1,49 @@
 <script>
   import TopNav from '@/components/TopNav/TopNav.vue';
   import SideNav from '@/components/SideNav/SideNav.vue';
+  import MenuItems from '@/components/MenuItems/MenuItems.vue'
+  import NewFoodModal from '@/components/NewFoodModal/NewFoodModal.vue';
   export default {
     name: 'Login',
     props: {},
     components: {
       TopNav,
       SideNav,
+      MenuItems,
+      NewFoodModal,
     },
-    data: () => ({
-      showLogin: true,
-    }),
+    data: function () {
+      return {
+        selectedTab: 'food',
+        modalVisible: false,
+        menuItems: {
+          food: this.$store.state.menuItems.food,
+          drinks: this.$store.state.menuItems.drinks,
+          desserts: this.$store.state.menuItems.desserts,
+        }
+      };
+    },
+    methods: {
+      changeTab(newTab) {
+        for (let test of this.menuItems.food) {
+          console.log('>>>>', test, typeof test)
+          console.log('>>>>', test.a)
+        }
+        if (newTab !== this.selectedTab) {
+          this.selectedTab = newTab;
+        }
+      },
+      toggleModal() {
+        this.modalVisible = this.modalVisible ? false : true;
+      },
+    },
   };
 </script>
 
 <template>
   <div class="Dashboard">
-    <SideNav />
+    <NewFoodModal v-if="modalVisible" v-bind="{toggleModal}" />
+    <SideNav page="menu" />
 
     <div class="dash-container">
       <TopNav />
@@ -24,31 +51,32 @@
       <div class="content">
         <h1>MENU</h1>
 
-      <button>+ FOOD</button>
-      <button>+ DRINK</button>
-      <button>+ DESERT</button>
-      
+        <div class="menu-buttons-wrapper">
+          <a @click="toggleModal" class="menu-button" href="#">+ FOOD</a>
+          <a class="menu-button" href="#">+ DRINK</a>
+          <a class="menu-button" href="#">+ DESSERT</a>
+        </div>
+
         <div class="menu-nav">
           <ul class="menu-nav-left">
-            <a class="menu-nav-selected" href="#">
+            <a @click="changeTab('food')" :class="{selected: selectedTab === 'food'}" href="#">
               <li>FOOD</li>
             </a>
-            <a href="#">
+            <a @click="changeTab('drinks')" :class="{selected: selectedTab === 'drinks'}" href="#">
               <li>DRINKS</li>
             </a>
-            <a href="#">
-              <li>DESERTS</li>
+            <a @click="changeTab('desserts')" :class="{selected: selectedTab === 'desserts'}" href="#">
+              <li>DESSERTS</li>
             </a>
           </ul>
         </div>
 
+        <MenuItems v-for="item of menuItems.food" :key="item.id" v-if="selectedTab === 'food'" />
+        <MenuItems v-for="item of menuItems.drinks" :key="item.id" v-if="selectedTab === 'drinks'" />
+        <MenuItems v-for="item of menuItems.desserts" :key="item.id" v-if="selectedTab === 'desserts'" />
+
       </div>
-
-
     </div>
-
-
-
   </div>
 </template>
 

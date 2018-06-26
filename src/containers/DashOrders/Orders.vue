@@ -16,7 +16,7 @@ export default {
 
 <template>
   <div class="Dashboard">
-    <SideNav />
+    <SideNav page="orders"/>
 
 
     <div class="dash-container">

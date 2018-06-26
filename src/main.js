@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Vuetify from 'vuetify';
 import LoginRegister from './containers/LoginRegister/LoginRegister.vue';
-import Orders from './containers/DashOrders/Orders.vue'
-import Menu from './containers/DashMenu/Menu.vue'
+import Orders from './containers/DashOrders/Orders.vue';
+import Menu from './containers/DashMenu/Menu.vue';
+
+import store from './store'
 
 Vue.use(VueRouter);
-Vue.use(Vuetify);
 Vue.config.productionTip = false;
 
 const router = new VueRouter({
@@ -22,5 +22,6 @@ const router = new VueRouter({
 
 new Vue({
   router,
+  store,
   render: h => <router-view />,
 }).$mount('#app');

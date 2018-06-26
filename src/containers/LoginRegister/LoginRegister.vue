@@ -14,8 +14,10 @@ export default {
     showLogin: true,
   }),
   mounted() {
-    if (window.location.pathname === '/register') this.showLogin = false;
-  }
+    if (window.location.pathname === '/register') {
+      this.showLogin = false;
+    }
+  },
 };
 </script>
 
