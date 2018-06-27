@@ -11,22 +11,30 @@ export default {
     },
   }),
   methods: {
-    handleSubmit() {
-      fetch('http://localhost:8080/log-in', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: this.login.email,
-          password: this.login.password,
-        }),
-      })
+    async handleSubmit() {
+      const fetch = await fetch(
+        'http://localhost:8080/log-in',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: this.login.email,
+            password: this.login.password,
+          }),
+        }
+      )
         .then(res => res.json())
-        .then(data => {
-          this.$router.push('/dashboard');
-        });
+        .catch(data => false);
+        
+      if (fetch) {
+        await this.$store.dispatch('fetchRestaurantData', fetch.id);  //fetch.id is the user's id
+        this.$router.push('/dashboard');
+      }
+      
+      // else handle login error
     },
   },
 };

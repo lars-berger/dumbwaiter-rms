@@ -47,7 +47,7 @@
           .catch(err => console.log(err));
       },
       editItem(newInfo) {
-        fetch('http://example.com/delete-item', {
+        fetch('http://example.com/edit-item', {
           method: 'PUT',
           headers: {
             Accept: 'application/json, text/plain',
@@ -102,10 +102,10 @@
         <!-- <MenuItems v-for="item of menuItems.food" :key="item.id" :a="item.a" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'food'"
         /> -->
 
-        <MenuItems v-for="item of menuItems.food" :key="item.id" :a="item.a" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'food'"
+        <MenuItems v-for="item of menuItems.food" :key="item.id" :name="item.name" :id="item.id" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'food'"
         />
-        <MenuItems v-for="item of menuItems.drinks" :key="item.id" :a="item.a" v-if="selectedTab === 'drinks'" />
-        <MenuItems v-for="item of menuItems.desserts" :key="item.id" :a="item.a" v-if="selectedTab === 'desserts'" />
+        <MenuItems v-for="item of menuItems.drinks" :key="item.id" :name="item.name" :id="item.id" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'drinks'" />
+        <MenuItems v-for="item of menuItems.desserts" :key="item.id" :name="item.name" :id="item.id" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'desserts'" />
 
       </div>
     </div>
