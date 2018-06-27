@@ -25,4 +25,22 @@ export default {
       name: 'Classic Bacon Burger'
     }],
   },
+  orders: [
+    {
+      orderId: '112',
+      orderItems: [
+        {
+          name: 'Classic Bacon Burger',
+          quantity: 1,
+          // special instructions
+        },
+        {
+          name: 'Classic Bacon Burger',
+          quantity: 2,
+          // special instructions
+        },
+      ],
+      table: 37,
+    }
+  ],
 }

@@ -3,12 +3,12 @@ import config from './config'
 export default {
   request(method, uri, data = null) {
     if (!method) {
-      console.error('API function call requires method argument')
+      console.error('You need a method argument')
       return;
     }
 
     if (!uri) {
-      console.error('API function call requires uri argument')
+      console.error('You need to specify an endpoint')
       return;
     }
 

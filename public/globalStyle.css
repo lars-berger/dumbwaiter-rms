@@ -16,9 +16,13 @@ html {
   }
 }
 
-html, body, h1, h4, ul {
+html, body, h1, h4, ul, p {
   margin: 0;
   padding: 0;
+}
+
+h4 {
+  font-size: 1.1rem;
 }
 
 .dash-container {
@@ -126,11 +130,11 @@ i.dropdown-icon {
 }
 
 .sidebar-content ul li.selected {
-  border-right: 0.15rem solid blue;
+  border-right: 0.15rem solid #11476e;
 }
 
 .sidebar-content ul li.selected i {
-  color: blue;
+  color: #11476e;
 }
 /* ************************************************************************ */
 
@@ -155,7 +159,7 @@ i.dropdown-icon {
 }
 
 .menu-item-button i {
-  color: blue;
+  color: #11476e;
 }
 
 

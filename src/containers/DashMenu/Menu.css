@@ -44,7 +44,7 @@ h1 {
 }
 
 .menu-nav-left a.selected {
-  border-bottom: 1.5px solid blue;
+  border-bottom: 1.5px solid #11476e;
   color: black;
 }
 
@@ -54,7 +54,7 @@ h1 {
 }
 
 .menu-button {
-  background-color: blue;
+  background-color: #11476e;
   color: white;
   padding: 0.4rem 1rem;
   border-radius: 2px;
