@@ -8,27 +8,24 @@ export default {
   menuItems: {
     food: [{
       id: 1,
-      a: 'fdsa'
+      a: 'Classic Bacon Burger'
     },
     {
       id: 2,
-      a: 'ffaf'
+      a: 'Classic Bacon Burger'
     }],
     drinks: [{
       id: 3,
-      a: 'fdddsa'
+      a: 'Classic Bacon Burger'
     },
     {
       id: 4,
-      a: 'ffaaaf'
+      a: 'Classic Bacon Burger'
     }],
-    desserts: [{
-      id: 5,
-      a: 'fdfdasssa'
-    },
+    desserts: [
     {
       id: 6,
-      a: 'fffdsafdsafdsaf'
+      a: 'Classic Bacon Burger'
     }],
   },
 }

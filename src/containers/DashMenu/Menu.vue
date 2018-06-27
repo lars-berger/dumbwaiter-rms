@@ -1,7 +1,7 @@
 <script>
   import TopNav from '@/components/TopNav/TopNav.vue';
   import SideNav from '@/components/SideNav/SideNav.vue';
-  import MenuItems from '@/components/MenuItems/MenuItems.vue'
+  import MenuItems from '@/components/MenuItems/MenuItems.vue';
   import NewFoodModal from '@/components/NewFoodModal/NewFoodModal.vue';
   export default {
     name: 'Login',
@@ -20,21 +20,49 @@
           food: this.$store.state.menuItems.food,
           drinks: this.$store.state.menuItems.drinks,
           desserts: this.$store.state.menuItems.desserts,
-        }
+        },
       };
     },
     methods: {
       changeTab(newTab) {
-        for (let test of this.menuItems.food) {
-          console.log('>>>>', test, typeof test)
-          console.log('>>>>', test.a)
-        }
-        if (newTab !== this.selectedTab) {
-          this.selectedTab = newTab;
-        }
+        if (newTab !== this.selectedTab) this.selectedTab = newTab;
       },
       toggleModal() {
         this.modalVisible = this.modalVisible ? false : true;
+      },
+      deleteItem(idToDelete) {
+        fetch('http://example.com/delete-item', {
+          method: 'DELETE',
+          headers: {
+            Accept: 'application/json, text/plain',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+          body: JSON.stringify({
+            id: idToDelete,
+          }),
+        })
+          .then(res => res.json())
+          .then(data => console.log(data))
+          .catch(err => console.log(err));
+      },
+      editItem(newInfo) {
+        fetch('http://example.com/delete-item', {
+          method: 'PUT',
+          headers: {
+            Accept: 'application/json, text/plain',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+          body: JSON.stringify({
+            name: newInfo.name,
+            description: newInfo.description,
+            price: newInfo.price,
+          }),
+        })
+          .then(res => res.json())
+          .then(data => console.log(data))
+          .catch(err => console.log(err));
       },
     },
   };
@@ -71,9 +99,13 @@
           </ul>
         </div>
 
-        <MenuItems v-for="item of menuItems.food" :key="item.id" v-if="selectedTab === 'food'" />
-        <MenuItems v-for="item of menuItems.drinks" :key="item.id" v-if="selectedTab === 'drinks'" />
-        <MenuItems v-for="item of menuItems.desserts" :key="item.id" v-if="selectedTab === 'desserts'" />
+        <!-- <MenuItems v-for="item of menuItems.food" :key="item.id" :a="item.a" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'food'"
+        /> -->
+
+        <MenuItems v-for="item of menuItems.food" :key="item.id" :a="item.a" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'food'"
+        />
+        <MenuItems v-for="item of menuItems.drinks" :key="item.id" :a="item.a" v-if="selectedTab === 'drinks'" />
+        <MenuItems v-for="item of menuItems.desserts" :key="item.id" :a="item.a" v-if="selectedTab === 'desserts'" />
 
       </div>
     </div>
