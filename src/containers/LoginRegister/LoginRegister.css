@@ -1,0 +1,62 @@
+.Login {
+  width: 100vw;
+  height: 100vh;
+  background-color:  #6a89cc;
+}
+
+.container {
+  width: 70%;
+  margin: 0 auto;
+  padding-top: 1px;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin: 20vh 0;
+}
+
+.logo-img {
+  height: 3rem;
+}
+
+.card {
+  margin: 0 auto;
+  max-width: 50rem;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.card-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.btn-login {
+  margin-top: 1rem;
+  width: 10rem;
+}
+
+.btn-login-right {
+  color: #78e08f;
+  text-transform: uppercase;
+  margin-left: 2rem;
+}
+
+.form-names {
+  display: flex;
+}
+
+.form-names input[type=text] {
+  margin-right: 0.5rem;
+}
+.form-names input[type=text]:last-child {
+  margin-left: 0.5rem;
+}
