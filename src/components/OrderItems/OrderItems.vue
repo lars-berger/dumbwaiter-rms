@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="orders-container">
     <div v-for="order in orders" :key="order.id" class="order">
       <div class="order-header">
         <h4 class="order-header-orderid">Order #{{order.orderId}}</h4>

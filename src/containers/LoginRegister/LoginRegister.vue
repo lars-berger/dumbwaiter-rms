@@ -1,6 +1,6 @@
 <script>
-import LoginForm from './../../components/LoginForm/LoginForm.vue';
-import RegisterForm from './../../components/RegisterForm/RegisterForm.vue';
+import LoginForm from '@/components/LoginForm/LoginForm.vue';
+import RegisterForm from '@/components/RegisterForm/RegisterForm.vue';
 export default {
   name: 'Login',
   props: {

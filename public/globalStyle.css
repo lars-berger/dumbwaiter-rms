@@ -159,7 +159,11 @@ i.dropdown-icon {
 }
 
 .menu-item-button i {
-  color: #11476e;
+  color: white;
+  background-color: #11476e;
+  margin-left: 0.5rem;
+  border-radius: 0.2rem;
+  padding: 0.2rem;
 }
 
 
