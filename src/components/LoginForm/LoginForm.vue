@@ -1,4 +1,5 @@
 <script>
+import api from '@/api';
 export default {
   name: 'Login',
   props: {
@@ -12,28 +13,21 @@ export default {
   }),
   methods: {
     async handleSubmit() {
-      const fetch = await fetch(
-        'http://localhost:8080/log-in',
-        {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: this.login.email,
-            password: this.login.password,
-          }),
-        }
-      )
-        .then(res => res.json())
-        .catch(data => false);
-        
-      if (fetch) {
-        await this.$store.dispatch('fetchRestaurantData', fetch.id);  //fetch.id is the user's id
+      const data = {
+        email: this.login.email,
+        password: this.login.password,
+      };
+
+      const user = await api.request('POST', '/log-in', data).catch(() => false);
+
+      if (user) {
+        await this.$store.dispatch(
+          'fetchRestaurantData',
+          fetch.id
+        ); //fetch.id is the user's id
         this.$router.push('/dashboard');
       }
-      
+
       // else handle login error
     },
   },

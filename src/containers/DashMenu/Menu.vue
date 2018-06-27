@@ -1,71 +1,59 @@
 <script>
-  import TopNav from '@/components/TopNav/TopNav.vue';
-  import SideNav from '@/components/SideNav/SideNav.vue';
-  import MenuItems from '@/components/MenuItems/MenuItems.vue';
-  import NewFoodModal from '@/components/NewFoodModal/NewFoodModal.vue';
-  export default {
-    name: 'Login',
-    props: {},
-    components: {
-      TopNav,
-      SideNav,
-      MenuItems,
-      NewFoodModal,
+import api from '@/api'
+import TopNav from '@/components/TopNav/TopNav.vue';
+import SideNav from '@/components/SideNav/SideNav.vue';
+import MenuItems from '@/components/MenuItems/MenuItems.vue';
+import NewFoodModal from '@/components/NewFoodModal/NewFoodModal.vue';
+export default {
+  name: 'Login',
+  props: {},
+  components: {
+    TopNav,
+    SideNav,
+    MenuItems,
+    NewFoodModal,
+  },
+  data: function() {
+    return {
+      selectedTab: 'food',
+      modalVisible: false,
+      menuItems: {
+        food: this.$store.state.menuItems.food,
+        drinks: this.$store.state.menuItems.drinks,
+        desserts: this.$store.state.menuItems.desserts,
+      },
+    };
+  },
+  methods: {
+    changeTab(newTab) {
+      if (newTab !== this.selectedTab)
+        this.selectedTab = newTab;
     },
-    data: function () {
-      return {
-        selectedTab: 'food',
-        modalVisible: false,
-        menuItems: {
-          food: this.$store.state.menuItems.food,
-          drinks: this.$store.state.menuItems.drinks,
-          desserts: this.$store.state.menuItems.desserts,
-        },
+    toggleModal() {
+      this.modalVisible = this.modalVisible ? false : true;
+    },
+    deleteItem(idToDelete) {
+      api.request('PUT', '/delete', {id: idToDelete})
+        .then(res => console.log(res))
+        .catch(err => console.log(err));
+
+    },
+    editItem(newInfo) {
+      const data = {
+        name: newInfo.name,
+        description: newInfo.description,
+        price: newInfo.price,
       };
-    },
-    methods: {
-      changeTab(newTab) {
-        if (newTab !== this.selectedTab) this.selectedTab = newTab;
-      },
-      toggleModal() {
-        this.modalVisible = this.modalVisible ? false : true;
-      },
-      deleteItem(idToDelete) {
-        fetch('http://example.com/delete-item', {
-          method: 'DELETE',
-          headers: {
-            Accept: 'application/json, text/plain',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-          body: JSON.stringify({
-            id: idToDelete,
-          }),
+
+      api.request('PUT', '/edit', data)
+        .then(res => {
+          console.log(res)
         })
-          .then(res => res.json())
-          .then(data => console.log(data))
-          .catch(err => console.log(err));
-      },
-      editItem(newInfo) {
-        fetch('http://example.com/edit-item', {
-          method: 'PUT',
-          headers: {
-            Accept: 'application/json, text/plain',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-          body: JSON.stringify({
-            name: newInfo.name,
-            description: newInfo.description,
-            price: newInfo.price,
-          }),
-        })
-          .then(res => res.json())
-          .then(data => console.log(data))
-          .catch(err => console.log(err));
-      },
+        .catch(err => console.log(err));
+
     },
-  };
+  },
+};
 </script>
 
 <template>
@@ -113,5 +101,5 @@
 </template>
 
 <style lang="scss" scoped>
-  @import 'Menu.css';
+@import 'Menu.css';
 </style>

@@ -1,4 +1,5 @@
 <script>
+import api from '@/api';
 export default {
   name: 'Register',
   props: {
@@ -14,21 +15,18 @@ export default {
   }),
   methods: {
     handleSubmit() {
-      fetch('http://localhost:8080/register', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: this.register.email,
-          password: this.register.password,
-        }),
-      })
-        .then(res => res.json())
-        .then(data => {
+      const data = {
+        email: this.register.email,
+        password: this.register.password,
+      };
+
+      api.request('POST', '/register', data)
+         .then(res => {
+          console.log(res);
           this.$router.push('/dashboard');
-        });
+         })
+         .catch(err => console.log(err));
+
     },
   },
 };

@@ -2,7 +2,6 @@ import gql from 'graphql-tag';
 import graphqlClient from '../graphql';
 
 export default {
-
   async fetchRestaurantData({ commit }, id) {
     let response = await graphqlClient.query({
       query: gql`

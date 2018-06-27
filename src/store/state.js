@@ -1,5 +1,4 @@
 export default {
-  serverURI: 'http://localhost:8080',
   user: null,
   token: null,
   restaurantInfo: {},
