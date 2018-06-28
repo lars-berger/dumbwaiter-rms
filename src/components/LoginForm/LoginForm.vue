@@ -27,7 +27,8 @@
         if (user.token) {
           await localStorage.setItem('token', user.token);
           await this.$store.dispatch(
-            'fetchRestaurantData',
+            'apolloQuery', 
+            'GET_RESTAURANT',
             fetch.id
           );
           this.$router.push('/dashboard');
