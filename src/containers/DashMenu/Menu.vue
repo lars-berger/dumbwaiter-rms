@@ -69,9 +69,9 @@ export default {
         <h1>MENU</h1>
 
         <div class="menu-buttons-wrapper">
-          <a @click="toggleModal" class="menu-button" href="#">+ FOOD</a>
-          <a class="menu-button" href="#">+ DRINK</a>
-          <a class="menu-button" href="#">+ DESSERT</a>
+          <a @click="toggleModal" class="btn menu-add-button" href="#">+ FOOD</a>
+          <a class="btn menu-add-button" href="#">+ DRINK</a>
+          <a class="btn menu-add-button" href="#">+ DESSERT</a>
         </div>
 
         <div class="menu-nav">
@@ -87,9 +87,6 @@ export default {
             </a>
           </ul>
         </div>
-
-        <!-- <MenuItems v-for="item of menuItems.food" :key="item.id" :a="item.a" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'food'"
-        /> -->
 
         <MenuItems v-for="item of menuItems.food" :key="item.id" :name="item.name" :id="item.id" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'food'"
         />

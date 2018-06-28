@@ -10,6 +10,7 @@ export default {
       email: '',
       password: '',
     },
+    errorMessage: null,
   }),
   methods: {
     async handleSubmit() {
@@ -18,11 +19,20 @@ export default {
         password: this.login.password,
       };
 
+      if (!data.username || !data.password) {
+        this.errorMessage =
+          'Please provide a username and password';
+      }
+
       const user = await api
         .request('POST', '/login-rms', data)
         .catch(() => false);
 
       console.log(user);
+
+      if (!user || !user.token) {
+        this.errorMessage = 'Incorrect login credentials';
+      }
 
       if (user.token) {
         await localStorage.setItem('token', user.token);
@@ -33,28 +43,20 @@ export default {
         );
         this.$router.push('/dashboard');
       }
-
-      // else handle login error
     },
   },
 };
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form class="card-form" @submit.prevent="handleSubmit">
     <input v-model="login.email" type="text" placeholder="Email">
     <input v-model="login.password" type="text" placeholder="Password">
-    <div class="card-buttons">
-      <div class="card-buttons-left">
+    <p v-if="errorMessage" class="error-message">{{errorMessage}}</p>
         <input type="submit" value="LOG IN" class="btn btn-login">
-      </div>
-      <div class="card-buttons-right">
-        <a class="btn-login-right" href="/register">Register</a>
-        <a class="btn" href="#">Forgot password</a>
-      </div>
+    <div class="card-buttons">
+        <a class="" href="/register">Register</a>
+        <a class="" href="#">Forgot password</a>
     </div>
   </form>
 </template>
-
-<style lang="scss" scoped>
-</style>

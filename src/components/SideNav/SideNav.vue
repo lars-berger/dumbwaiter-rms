@@ -31,3 +31,7 @@
     </div>
   </div>
 </template>
+
+
+<style src="./SideNav.css" scoped>
+

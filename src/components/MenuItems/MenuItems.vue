@@ -23,3 +23,6 @@ export default {
   },
 };
 </script>
+
+<style src="./MenuItems.css" scoped>
+

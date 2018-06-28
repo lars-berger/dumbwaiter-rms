@@ -26,7 +26,6 @@ export default {
 
 <template>
   <div class="Login">
-    <!-- <img src="@/assets/images/test.jpg" alt="" srcset=""> -->
     <div class="container">
       <div class="logo-container">
         <img class="logo-img" src="@/assets/images/temp-logo2.png" >
@@ -41,7 +40,5 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped>
-@import '@/assets/sass/materialize.scss';
-@import 'LoginRegister.css';
-</style>
+<style src="./LoginRegister.css" scoped>
+
