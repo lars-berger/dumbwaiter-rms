@@ -1,43 +1,43 @@
 <script>
-  import api from '@/api';
-  export default {
-    name: 'Login',
-    props: {
-      msg: String,
+import api from '@/api';
+export default {
+  name: 'Login',
+  props: {
+    msg: String,
+  },
+  data: () => ({
+    login: {
+      email: '',
+      password: '',
     },
-    data: () => ({
-      login: {
-        email: '',
-        password: '',
-      },
-    }),
-    methods: {
-      async handleSubmit() {
-        const data = {
-          username: this.login.email,
-          password: this.login.password,
-        };
+  }),
+  methods: {
+    async handleSubmit() {
+      const data = {
+        username: this.login.email,
+        password: this.login.password,
+      };
 
-        const user = await api
-          .request('POST', '/login-rms', data)
-          .catch(() => false);
+      const user = await api
+        .request('POST', '/login-rms', data)
+        .catch(() => false);
 
-        console.log(user);
+      console.log(user);
 
-        if (user.token) {
-          await localStorage.setItem('token', user.token);
-          await this.$store.dispatch(
-            'apolloQuery', 
-            'GET_RESTAURANT',
-            fetch.id
-          );
-          this.$router.push('/dashboard');
-        }
+      if (user.token) {
+        await localStorage.setItem('token', user.token);
+        await this.$store.dispatch(
+          'apolloQuery',
+          'GET_RESTAURANT',
+          fetch.id
+        );
+        this.$router.push('/dashboard');
+      }
 
-        // else handle login error
-      },
+      // else handle login error
     },
-  };
+  },
+};
 </script>
 
 <template>

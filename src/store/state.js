@@ -3,27 +3,32 @@ export default {
   token: null,
   restaurantInfo: {},
   menuItems: {
-    food: [{
-      id: 1,
-      name: 'Classic Bacon Burger'
-    },
-    {
-      id: 2,
-      name: 'Classic Bacon Burger'
-    }],
-    drinks: [{
-      id: 3,
-      name: 'Classic Bacon Burger'
-    },
-    {
-      id: 4,
-      name: 'Classic Bacon Burger'
-    }],
+    food: [
+      {
+        id: 1,
+        name: 'Classic Bacon Burger',
+      },
+      {
+        id: 2,
+        name: 'Classic Bacon Burger',
+      },
+    ],
+    drinks: [
+      {
+        id: 3,
+        name: 'Classic Bacon Burger',
+      },
+      {
+        id: 4,
+        name: 'Classic Bacon Burger',
+      },
+    ],
     desserts: [
-    {
-      id: 6,
-      name: 'Classic Bacon Burger'
-    }],
+      {
+        id: 6,
+        name: 'Classic Bacon Burger',
+      },
+    ],
   },
   orders: [
     {
@@ -75,4 +80,4 @@ export default {
       table: 37,
     },
   ],
-}
+};

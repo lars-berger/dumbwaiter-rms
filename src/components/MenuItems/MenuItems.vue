@@ -20,6 +20,6 @@ export default {
     id: Number,
     deleteItem: Function,
     editItem: Function,
-  }
-}
+  },
+};
 </script>

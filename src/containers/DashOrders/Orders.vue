@@ -1,22 +1,22 @@
 <script>
-  import OrderItems from '@/components/OrderItems/OrderItems.vue';
-  import TopNav from '@/components/TopNav/TopNav.vue';
-  import SideNav from '@/components/SideNav/SideNav.vue';
-  export default {
-    name: 'Orders',
-    props: {},
-    components: {
-      TopNav,
-      SideNav,
-      OrderItems,
-    },
-    data: function () {
-      return {
-        orders: this.$store.state.orders,
-        completedOrders: [],
-      };
-    },
-  };
+import OrderItems from '@/components/OrderItems/OrderItems.vue';
+import TopNav from '@/components/TopNav/TopNav.vue';
+import SideNav from '@/components/SideNav/SideNav.vue';
+export default {
+  name: 'Orders',
+  props: {},
+  components: {
+    TopNav,
+    SideNav,
+    OrderItems,
+  },
+  data: function() {
+    return {
+      orders: this.$store.state.orders,
+      completedOrders: [],
+    };
+  },
+};
 </script>
 
 <template>
@@ -47,5 +47,5 @@
 </template>
 
 <style lang="scss" scoped>
-  @import 'Orders.css';
+@import 'Orders.css';
 </style>

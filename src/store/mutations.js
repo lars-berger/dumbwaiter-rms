@@ -31,12 +31,12 @@ export default {
     state.menuItems.desserts = desserts;
   },
   SET_USER(state, user) {
-    state.user = user
+    state.user = user;
   },
   SET_TOKEN(state, token) {
-    state.token = token
+    state.token = token;
   },
   // SET_MENU(state, menu) {
   //   state.menuItems = menu;
   // },
-}
+};

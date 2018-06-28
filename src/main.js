@@ -4,7 +4,7 @@ import LoginRegister from './containers/LoginRegister/LoginRegister.vue';
 import Orders from './containers/DashOrders/Orders.vue';
 import Menu from './containers/DashMenu/Menu.vue';
 
-import store from './store'
+import store from './store';
 
 Vue.use(VueRouter);
 Vue.config.productionTip = false;

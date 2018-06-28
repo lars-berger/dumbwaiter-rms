@@ -1,4 +1,4 @@
-const GET_RESTAURANT = function (id) {
+const GET_RESTAURANT = function(id) {
   return `
   {
     restaurant(id: ${id}) {
@@ -25,6 +25,6 @@ const GET_RESTAURANT = function (id) {
     }
   }
   `;
-}
+};
 
 export { GET_RESTAURANT };

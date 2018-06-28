@@ -1,5 +1,5 @@
 <script>
-import api from '@/api'
+import api from '@/api';
 import TopNav from '@/components/TopNav/TopNav.vue';
 import SideNav from '@/components/SideNav/SideNav.vue';
 import MenuItems from '@/components/MenuItems/MenuItems.vue';
@@ -26,17 +26,18 @@ export default {
   },
   methods: {
     changeTab(newTab) {
-      if (newTab !== this.selectedTab)
+      if (newTab !== this.selectedTab) {
         this.selectedTab = newTab;
+      }
     },
     toggleModal() {
       this.modalVisible = this.modalVisible ? false : true;
     },
     deleteItem(idToDelete) {
-      api.request('PUT', '/delete', {id: idToDelete})
+      api
+        .request('PUT', '/delete', { id: idToDelete })
         .then(res => console.log(res))
         .catch(err => console.log(err));
-
     },
     editItem(newInfo) {
       const data = {
@@ -45,12 +46,12 @@ export default {
         price: newInfo.price,
       };
 
-      api.request('PUT', '/edit', data)
+      api
+        .request('PUT', '/edit', data)
         .then(res => {
-          console.log(res)
+          console.log(res);
         })
         .catch(err => console.log(err));
-
     },
   },
 };

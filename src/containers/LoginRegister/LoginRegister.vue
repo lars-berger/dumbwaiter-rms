@@ -10,11 +10,11 @@ export default {
     LoginForm,
     RegisterForm,
   },
-  data: function () {
+  data: function() {
     return {
-      imgUrl: "@/assets/images/test.jpg",
-    showLogin: true,
-    }
+      imgUrl: '@/assets/images/test.jpg',
+      showLogin: true,
+    };
   },
   mounted() {
     if (window.location.pathname === '/register') {

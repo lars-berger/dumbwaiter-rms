@@ -20,13 +20,13 @@ export default {
         password: this.register.password,
       };
 
-      api.request('POST', '/register', data)
-         .then(res => {
+      api
+        .request('POST', '/register', data)
+        .then(res => {
           console.log(res);
           this.$router.push('/dashboard');
-         })
-         .catch(err => console.log(err));
-
+        })
+        .catch(err => console.log(err));
     },
   },
 };

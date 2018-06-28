@@ -28,14 +28,14 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      orders: Array,
+export default {
+  props: {
+    orders: Array,
+  },
+  methods: {
+    formatTimestamp(timestamp) {
+      console.log('f');
     },
-    methods: {
-      formatTimestamp(timestamp) {
-        console.log('f');
-      },
-    },
-  };
+  },
+};
 </script>
