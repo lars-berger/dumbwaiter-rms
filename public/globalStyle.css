@@ -16,6 +16,10 @@ html {
   }
 }
 
+a {
+  text-decoration: none;
+}
+
 html, body, h1, h4, ul, p {
   margin: 0;
   padding: 0;
@@ -209,17 +213,6 @@ i.dropdown-icon {
   
   /* transform: translateY(45px); */
 }
-
-/* .active {
-  visibility: visible;
-  opacity: 1;
-}
-
-.active + .modal{
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-} */
 
 .close-modal {
   float: right;

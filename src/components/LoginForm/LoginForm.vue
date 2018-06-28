@@ -1,37 +1,42 @@
 <script>
-import api from '@/api';
-export default {
-  name: 'Login',
-  props: {
-    msg: String,
-  },
-  data: () => ({
-    login: {
-      email: '',
-      password: '',
+  import api from '@/api';
+  export default {
+    name: 'Login',
+    props: {
+      msg: String,
     },
-  }),
-  methods: {
-    async handleSubmit() {
-      const data = {
-        email: this.login.email,
-        password: this.login.password,
-      };
+    data: () => ({
+      login: {
+        email: '',
+        password: '',
+      },
+    }),
+    methods: {
+      async handleSubmit() {
+        const data = {
+          username: this.login.email,
+          password: this.login.password,
+        };
 
-      const user = await api.request('POST', '/log-in', data).catch(() => false);
+        const user = await api
+          .request('POST', '/login-rms', data)
+          .catch(() => false);
 
-      if (user) {
-        await this.$store.dispatch(
-          'fetchRestaurantData',
-          fetch.id
-        ); //fetch.id is the user's id
-        this.$router.push('/dashboard');
-      }
+        console.log(user);
 
-      // else handle login error
+        if (user.token) {
+          await localStorage.setItem('token', user.token);
+          await this.$store.dispatch(
+            'fetchRestaurantData',
+            fetch.id
+          );
+          this.$router.push('/dashboard');
+        }
+
+        // else handle login error
+      },
     },
-  },
-};
+  };
 </script>
 
 <template>
@@ -40,11 +45,11 @@ export default {
     <input v-model="login.password" type="text" placeholder="Password">
     <div class="card-buttons">
       <div class="card-buttons-left">
-        <input type="submit" value="Submit" class="btn btn-login">
+        <input type="submit" value="LOG IN" class="btn btn-login">
       </div>
       <div class="card-buttons-right">
         <a class="btn-login-right" href="/register">Register</a>
-        <a class="btn-login-right" href="#">Forgot password</a>
+        <a class="btn" href="#">Forgot password</a>
       </div>
     </div>
   </form>

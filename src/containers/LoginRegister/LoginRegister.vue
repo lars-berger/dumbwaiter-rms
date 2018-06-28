@@ -10,9 +10,12 @@ export default {
     LoginForm,
     RegisterForm,
   },
-  data: () => ({
+  data: function () {
+    return {
+      imgUrl: "@/assets/images/test.jpg",
     showLogin: true,
-  }),
+    }
+  },
   mounted() {
     if (window.location.pathname === '/register') {
       this.showLogin = false;
@@ -23,6 +26,7 @@ export default {
 
 <template>
   <div class="Login">
+    <!-- <img src="@/assets/images/test.jpg" alt="" srcset=""> -->
     <div class="container">
       <div class="logo-container">
         <img class="logo-img" src="@/assets/images/temp-logo2.png" >

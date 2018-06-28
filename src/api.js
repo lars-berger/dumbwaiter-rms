@@ -11,16 +11,19 @@ export default {
       console.error('You need to specify an endpoint')
       return;
     }
-
+    console.log('fdsafdsafdsa')
     const url = config.serverURI + uri;
-
+    const encrypted = window.btoa(`${data.username}:${data.password}`);
+    console.log(encrypted)
     return fetch(url,
       {
         method: method,
         headers: {
           Accept: 'application/json, text/plain',
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
+          Authorization: `Basic ${encrypted}`,
+
+          // Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
         body: JSON.stringify(data),
       }
