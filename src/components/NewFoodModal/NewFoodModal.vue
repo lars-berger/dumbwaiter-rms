@@ -19,27 +19,19 @@ export default {
     this.showModal = true;
   },
   methods: {
-    handleSubmit() {
-      fetch('http://example.com/new-food', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json, text/plain',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem(
-            'token'
-          )}`,
-        },
-        body: JSON.stringify({
-          name: this.foodItem.name,
-          description: this.foodItem.description,
-          price: this.foodItem.price,
-        }),
-      })
-        .then(res => res.json())
-        .then(() => {
-          this.toggleModal();
-        })
-        .catch(err => console.log(err));
+    async handleSubmit() {
+      const data = {
+        name: this.foodItem.name,
+        description: this.foodItem.description,
+        price: this.foodItem.price,
+      };
+
+      await this.$store.dispatch('apolloQuery', {
+        queryName: 'ADD_PRODUCT',
+        data: data,
+      });
+
+      this.toggleModal();
     },
   },
 };

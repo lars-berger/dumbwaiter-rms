@@ -7,6 +7,8 @@ import Menu from './containers/DashMenu/Menu.vue';
 import store from './store';
 
 Vue.use(VueRouter);
+Vue.config.devtools = true;
+
 Vue.config.productionTip = false;
 
 const router = new VueRouter({

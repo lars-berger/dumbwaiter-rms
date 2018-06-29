@@ -88,10 +88,10 @@ export default {
           </ul>
         </div>
 
-        <MenuItems v-for="item of menuItems.food" :key="item.id" :name="item.name" :id="item.id" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'food'"
+        <MenuItems v-for="item of menuItems.food" :key="item.id" :name="item.name" :photos="item.photos[0].url" :price="item.price" :description="item.description" :id="item.id" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'food'"
         />
-        <MenuItems v-for="item of menuItems.drinks" :key="item.id" :name="item.name" :id="item.id" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'drinks'" />
-        <MenuItems v-for="item of menuItems.desserts" :key="item.id" :name="item.name" :id="item.id" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'desserts'" />
+        <MenuItems v-for="item of menuItems.drinks" :key="item.id" :name="item.name" :description="item.description" :id="item.id" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'drinks'" />
+        <MenuItems v-for="item of menuItems.desserts" :key="item.id" :name="item.name" :description="item.description" :id="item.id" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'desserts'" />
 
       </div>
     </div>

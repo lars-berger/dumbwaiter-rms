@@ -6,13 +6,15 @@ export default {
     const drinks = [];
     const desserts = [];
 
+    console.log(info);
+
     const restaurantInfo = {
       name: info.restaurant[0].description,
       photos: info.restaurant[0].photos,
     };
 
     info.restaurant[0].products.map(product => {
-      product.categorys.map(category => {
+      product.categories.map(category => {
         if (category.name == 'drinks') {
           drinks.push(product);
         }

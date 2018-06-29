@@ -7,8 +7,8 @@ export default {
   },
   data: () => ({
     login: {
-      email: '',
-      password: '',
+      email: 'lars.berger@yahoo.com',
+      password: 'test',
     },
     errorMessage: null,
   }),
@@ -36,12 +36,10 @@ export default {
 
       if (user.token) {
         await localStorage.setItem('token', user.token);
-        await this.$store.dispatch(
-          'apolloQuery',
-          'GET_RESTAURANT',
-          fetch.id
-        );
-        this.$router.push('/dashboard');
+        await this.$store.dispatch('apolloQuery', {
+          queryName: 'GET_RESTAURANT',
+        });
+        this.$router.push('/orders');
       }
     },
   },

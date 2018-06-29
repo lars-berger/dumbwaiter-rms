@@ -7,26 +7,26 @@
     </a>
     <div class="sidebar-content">
       <ul>
-        <a href="/orders">
+        <router-link to="/orders">
           <li :class="{selected: props.page === 'orders'}">
             <i class="material-icons">assignment_late</i>
           </li>
-        </a>
-        <a href="/menu">
+        </router-link>
+        <router-link to="/menu">
           <li :class="{selected: props.page === 'menu'}">
             <i class="material-icons">fastfood</i>
           </li>
-        </a>
-        <a href="/tables">
+        </router-link>
+        <router-link to="/tables">
           <li :class="{selected: props.page === 'tables'}">
             <i class="material-icons">view_quilt</i>
           </li>
-        </a>
-        <a href="/settings">
+        </router-link>
+        <router-link to="/settings">
           <li :class="{selected: props.page === 'settings'}">
             <i class="material-icons">settings</i>
           </li>
-        </a>
+        </router-link>
       </ul>
     </div>
   </div>
