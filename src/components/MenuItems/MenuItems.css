@@ -5,14 +5,16 @@
 
 .menu-item-card {
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-between;
   background-color: white;
   margin: 1rem 0;
   padding: 1rem;
 }
 
-.menu-item-card-left {
+.menu-item-card-left, .menu-item-card-right {
   display: flex;
+  flex-wrap: nowrap;
 }
 
 .menu-item-img {

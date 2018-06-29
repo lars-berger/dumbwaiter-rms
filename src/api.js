@@ -16,6 +16,7 @@ export default {
     const encrypted = window.btoa(
       `${data.username}:${data.password}`
     );
+
     console.log(encrypted);
     return fetch(url, {
       method: method,
@@ -28,5 +29,6 @@ export default {
       },
       body: JSON.stringify(data),
     }).then(res => res.json());
+    // if jwt token is expired, redirect them to '/'
   },
 };

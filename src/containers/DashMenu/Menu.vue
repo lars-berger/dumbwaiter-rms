@@ -69,7 +69,7 @@ export default {
         <h1>MENU</h1>
 
         <div class="menu-buttons-wrapper">
-          <a @click="toggleModal" class="btn menu-add-button" href="#">+ FOOD</a>
+          <a @click="toggleModal" class="btn menu-add-button" href="#">+ MEAL</a>
           <a class="btn menu-add-button" href="#">+ DRINK</a>
           <a class="btn menu-add-button" href="#">+ DESSERT</a>
         </div>
@@ -77,7 +77,7 @@ export default {
         <div class="menu-nav">
           <ul class="menu-nav-left">
             <a @click="changeTab('food')" :class="{selected: selectedTab === 'food'}" href="#">
-              <li>FOOD</li>
+              <li>MEALS</li>
             </a>
             <a @click="changeTab('drinks')" :class="{selected: selectedTab === 'drinks'}" href="#">
               <li>DRINKS</li>
