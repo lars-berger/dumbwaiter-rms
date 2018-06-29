@@ -28,6 +28,7 @@ export default {
 
       await this.$store.dispatch('apolloQuery', {
         queryName: 'ADD_PRODUCT',
+        queryType: 'mutation',
         data: data,
       });
 

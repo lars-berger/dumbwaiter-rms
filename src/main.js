@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import ProtectRoute from './protect-route';
 import LoginRegister from './containers/LoginRegister/LoginRegister.vue';
 import Orders from './containers/DashOrders/Orders.vue';
 import Menu from './containers/DashMenu/Menu.vue';
@@ -18,7 +19,11 @@ const router = new VueRouter({
     { path: '/', component: LoginRegister },
     { path: '/register', component: LoginRegister },
     { path: '/orders', component: Orders },
-    { path: '/menu', component: Menu },
+    {
+      path: '/menu',
+      component: Menu,
+      beforeEnter: ProtectRoute,
+    },
   ],
 });
 

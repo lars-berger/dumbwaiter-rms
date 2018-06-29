@@ -6,22 +6,22 @@ export default {
   async apolloQuery({ commit }, args) {
     const query = QUERY[args.queryName](args.data);
 
-    if (args.queryName !== 'ADD_PRODUCT') {
+    if (args.queryType === 'query') {
       var response = await graphqlClient.query({
         query: gql`
           ${query}
         `,
       });
-      await commit('SET_RESTAURANT_DATA', response.data);
+
+      await commit(args.queryName, response.data);
     }
 
-    if (args.queryName === 'ADD_PRODUCT') {
+    if (args.queryType === 'mutation') {
       var response2 = await graphqlClient.mutate({
         mutation: gql`
           ${query}
         `,
       });
-      console.log('>> imp ', response2);
     }
   },
 };

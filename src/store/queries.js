@@ -1,4 +1,4 @@
-const GET_RESTAURANT = function(id = 1) {
+const GET_RESTAURANT_DATA = function(id = 1) {
   return `
   {
     restaurant(id: ${id}) {
@@ -58,4 +58,4 @@ const ADD_PRODUCT = function(product) {
   `;
 };
 
-export { GET_RESTAURANT, ADD_PRODUCT };
+export { GET_RESTAURANT_DATA, ADD_PRODUCT };

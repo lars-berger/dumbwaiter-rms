@@ -1,6 +1,7 @@
 export default {
   user: null,
   token: null,
+  userRefreshed: true,
   restaurantInfo: {},
   menuItems: {},
   // menuItems: {

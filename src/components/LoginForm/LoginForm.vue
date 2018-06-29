@@ -37,7 +37,8 @@ export default {
       if (user.token) {
         await localStorage.setItem('token', user.token);
         await this.$store.dispatch('apolloQuery', {
-          queryName: 'GET_RESTAURANT',
+          queryType: 'query',
+          queryName: 'GET_RESTAURANT_DATA',
         });
         this.$router.push('/orders');
       }

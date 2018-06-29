@@ -1,12 +1,10 @@
 // mutations are synchronous - often used to set the data from an action
 
 export default {
-  SET_RESTAURANT_DATA(state, info) {
+  GET_RESTAURANT_DATA(state, info) {
     const mains = [];
     const drinks = [];
     const desserts = [];
-
-    console.log(info);
 
     const restaurantInfo = {
       name: info.restaurant[0].description,
@@ -31,6 +29,7 @@ export default {
     state.menuItems.food = mains;
     state.menuItems.drinks = drinks;
     state.menuItems.desserts = desserts;
+    state.userRefreshed = false;
   },
   SET_USER(state, user) {
     state.user = user;
@@ -38,7 +37,4 @@ export default {
   SET_TOKEN(state, token) {
     state.token = token;
   },
-  // SET_MENU(state, menu) {
-  //   state.menuItems = menu;
-  // },
 };
