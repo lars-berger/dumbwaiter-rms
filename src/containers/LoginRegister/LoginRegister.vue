@@ -40,5 +40,5 @@ export default {
   </div>
 </template>
 
-<style src="./LoginRegister.css" scoped>
+<style src="./LoginRegister.css">
 

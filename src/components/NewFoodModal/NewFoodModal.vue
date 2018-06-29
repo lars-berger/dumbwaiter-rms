@@ -1,38 +1,3 @@
-<template>
-  <div class="NewEventModal">
-    <div id="modal" :class="{'modal-visible': showModal}">
-      <div class="modal-container">
-        <h3 class="login-header">NEW FOOD ITEM</h3>
-        <form @submit.prevent="handleSubmit" class="modal-form">
-          <p id="addnew-error"></p>
-
-            <div class="form-field">
-              <p class="addnew-label">Name:</p>
-              <input v-model="foodItem.name" type="text" />
-            </div>
-
-            <div class="form-field">
-              <p class="addnew-label">Description:</p>
-              <input v-model="foodItem.description" type="text" />
-            </div>
-
-            <div class="form-field">
-              <p class="addnew-label">Price:</p>
-              <input v-model="foodItem.price" type="text" />
-            </div>
-
-          <div class="form-buttons-wrapper">
-            <input type="submit" class="btn addnew-submit" value="Confirm" />
-            <span @click="toggleModal" class="addnew-cancel">CANCEL</span>
-          </div>
-        </form>
-      </div>
-    </div>
-    <div @click="toggleModal" :class="{'modal-visible': showModal}" id="mask"></div>
-  </div>
-</template>
-
-
 <script>
 export default {
   name: 'NewFoodModal',
@@ -80,6 +45,50 @@ export default {
 };
 </script>
 
+<template>
+  <div class="NewEventModal">
+    <div id="modal" :class="{'modal-visible': showModal}">
+      <div class="modal-container">
+        <i @click="toggleModal" class="material-icons close-modal">close</i>
+        <h2>NEW FOOD ITEM</h2>
+        <hr>
+        <form @submit.prevent="handleSubmit" class="modal-form">
 
-<style lang="scss" scoped>
-</style>
+          <div class="modal-inputs-container">
+            <div class="form-inline">
+              <div class="form-field">
+
+                <p class="addnew-label">Name:</p>
+                <input v-model="foodItem.name" type="text" />
+              </div>
+              <div class="form-field">
+                <p class="addnew-label-price">Price:</p>
+                <!-- <input v-model="foodItem.price" type="text" /> -->
+                <label for='txt'>€
+                    <input v-model="foodItem.price" type="text" id='txt' />
+                </label>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <p class="addnew-label">Description:</p>
+              <textarea v-model="foodItem.description" ></textarea>
+            </div>
+
+<div class="form-field">
+              <p class="addnew-label">Photo:</p>
+             <input type="file" name="" id="">
+            </div>
+            
+          </div>
+
+          <div class="form-buttons-wrapper">
+            <p id="addnew-error"></p>
+            <input type="submit" class="btn addnew-submit" value="ADD ITEM" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <div @click="toggleModal" :class="{'modal-visible': showModal}" id="mask"></div>
+  </div>
+</template>
