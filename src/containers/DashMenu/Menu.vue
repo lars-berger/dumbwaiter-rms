@@ -88,10 +88,10 @@ export default {
           </ul>
         </div>
 
-        <MenuItems v-for="item of menuItems.food" :key="item.id" :name="item.name" :photos="item.photos[0].url" :price="item.price" :description="item.description" :id="item.id" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'food'"
+        <MenuItems :menuItems="menuItems.food" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'food'"
         />
-        <MenuItems v-for="item of menuItems.drinks" :key="item.id" :name="item.name" :description="item.description" :id="item.id" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'drinks'" />
-        <MenuItems v-for="item of menuItems.desserts" :key="item.id" :name="item.name" :description="item.description" :id="item.id" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'desserts'" />
+        <MenuItems :menuItems="menuItems.drinks" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'drinks'" />
+        <MenuItems :menuItems="menuItems.desserts" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'desserts'" />
 
       </div>
     </div>

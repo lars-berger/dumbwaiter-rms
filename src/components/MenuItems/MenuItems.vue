@@ -1,12 +1,13 @@
 <template>
-  <div class="menu-item-card">
+<div>
+  <div v-for="item of menuItems" class="menu-item-card" :key="item.id">
     <div class="menu-item-card-left">
     <div class="menu-item-img-wrapper">
-      <img class="menu-item-img" :src="photos">
+      <img class="menu-item-img" :src="item.photos[0].url">
     </div>
     <div class="menu-item text">
-      <h4 class="menu-item-name">{{name}} - €{{price}}</h4>
-      <p class="menu-item description">{{description}}</p>
+      <h4 class="menu-item-name">{{item.name}} - €{{item.price}}</h4>
+      <p class="menu-item description">{{item.description}}</p>
     </div>
     </div>
         <div class="menu-item-card-right">
@@ -14,17 +15,14 @@
     <a class="menu-item-button" href="#"><i class="material-icons">edit</i></a>
         </div>
   </div>
+</div>
 </template>
 
 
 <script>
 export default {
   props: {
-    name: String,
-    id: Number,
-    description: String,
-    photos: String,
-    price: Number,
+    menuItems: Array,
     deleteItem: Function,
     editItem: Function,
   },
