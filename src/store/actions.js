@@ -6,8 +6,9 @@ export default {
   async apolloQuery({ commit }, args) {
     const query = QUERY[args.queryName](args.data);
 
+    let response;
     if (args.queryType === 'query') {
-      var response = await graphqlClient.query({
+      response = await graphqlClient.query({
         query: gql`
           ${query}
         `,
@@ -17,11 +18,13 @@ export default {
     }
 
     if (args.queryType === 'mutation') {
-      var response2 = await graphqlClient.mutate({
+      response = await graphqlClient.mutate({
         mutation: gql`
           ${query}
         `,
       });
     }
+    console.log('>> response from query', response);
+    return await response.data;
   },
 };

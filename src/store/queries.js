@@ -27,23 +27,7 @@ const GET_RESTAURANT_DATA = function(id = 1) {
   `;
 };
 
-// const ADD_PRODUCT = function() {
-//   return `
-//   {
-//     productRms {
-//       id
-//       name
-//       description
-//       price
-//       categories {
-//        id
-//          name
-//       }
-//     }
-//   }`;
-// };
 const ADD_PRODUCT = function(product) {
-  console.log('>>>>>>>> product', product);
   return `
   mutation {
     createProduct(
@@ -58,4 +42,21 @@ const ADD_PRODUCT = function(product) {
   `;
 };
 
-export { GET_RESTAURANT_DATA, ADD_PRODUCT };
+const ADD_CATEGORY_TO_PRODUCT = function(product) {
+  return `
+  mutation {
+    addCategoryToProduct(
+      id: ${Number(product.id)}
+      categoryName: "${product.category}"
+    ) {
+      id
+    }
+  }
+  `;
+};
+
+export {
+  GET_RESTAURANT_DATA,
+  ADD_PRODUCT,
+  ADD_CATEGORY_TO_PRODUCT,
+};

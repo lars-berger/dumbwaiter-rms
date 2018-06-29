@@ -1,47 +1,59 @@
 <script>
-  export default {
-    name: 'NewFoodModal',
-    props: {
-      toggleModal: Function,
-      // existing data - for edit functionality
-    },
-    data: function () {
-      return {
-        foodItem: {
-          name: '',
-          description: '',
-          price: '',
-        },
-        showModal: false,
-        priceInputFocused: false,
-        fileName: '',
+export default {
+  name: 'NewFoodModal',
+  props: {
+    toggleModal: Function,
+    // existing data - for edit functionality
+  },
+  data: function() {
+    return {
+      foodItem: {
+        name: '',
+        description: '',
+        price: '',
+      },
+      showModal: false,
+      priceInputFocused: false,
+      fileName: '',
+    };
+  },
+  mounted() {
+    this.showModal = true;
+  },
+  methods: {
+    async handleSubmit() {
+      const data = {
+        name: this.foodItem.name,
+        description: this.foodItem.description,
+        price: Number(this.foodItem.price),
       };
-    },
-    mounted() {
-      this.showModal = true;
-    },
-    methods: {
-      async handleSubmit() {
-        const data = {
-          name: this.foodItem.name,
-          description: this.foodItem.description,
-          price: Number(this.foodItem.price),
-        };
 
-        await this.$store.dispatch('apolloQuery', {
+      const addedProduct = await this.$store.dispatch(
+        'apolloQuery',
+        {
           queryName: 'ADD_PRODUCT',
           queryType: 'mutation',
           data: data,
-        });
+        }
+      );
 
-        this.toggleModal();
-      },
-      filesAdded(e) {
-        const fileName = e.target.value.split('\\');
-        this.fileName = fileName[fileName.length-1];
-      },
+      await this.$store.dispatch('apolloQuery', {
+        queryName: 'ADD_CATEGORY_TO_PRODUCT',
+        queryType: 'mutation',
+        data: {
+          id: addedProduct.createProduct.id,
+          category: 'foods',
+        },
+      });
+
+      this.toggleModal();
     },
-  };
+    filesAdded(e) {
+      const fileName = e.target.value.split('\\');
+      this.fileName = fileName[fileName.length - 1];
+    },
+  },
+};
 </script>
 
 <template>
@@ -84,9 +96,6 @@
                 </div>
                 <hr>
             </div>
-
-            
-
           </div>
 
           <div class="form-buttons-wrapper">
