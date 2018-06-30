@@ -5,11 +5,11 @@ export default async function(to, from, next) {
     next('/');
   } else if (store.state.userRefreshed) {
     // fetch again
-    await store.dispatch('apolloQuery', {
-      queryType: 'query',
-      queryName: 'GET_RESTAURANT_DATA',
-    });
-    next(to);
+    // await store.dispatch('apolloQuery', {
+    //   queryType: 'query',
+    //   queryName: 'GET_RESTAURANT_DATA',
+    // });
+    // next(to);
   }
   next();
 }
