@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import ProtectRoute from './protect-route';
+
 import LoginRegister from './containers/LoginRegister/LoginRegister.vue';
 import Orders from './containers/DashOrders/Orders.vue';
 import Menu from './containers/DashMenu/Menu.vue';
+import Layout from './containers/DashLayout/Layout.vue';
 
 import store from './store';
 
@@ -18,10 +20,19 @@ const router = new VueRouter({
   routes: [
     { path: '/', component: LoginRegister },
     { path: '/register', component: LoginRegister },
-    { path: '/orders', component: Orders },
+    {
+      path: '/orders',
+      component: Orders,
+      beforeEnter: ProtectRoute,
+    },
     {
       path: '/menu',
       component: Menu,
+      beforeEnter: ProtectRoute,
+    },
+    {
+      path: '/layout',
+      component: Layout,
       beforeEnter: ProtectRoute,
     },
   ],

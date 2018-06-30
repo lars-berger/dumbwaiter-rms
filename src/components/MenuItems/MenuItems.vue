@@ -11,8 +11,8 @@
     </div>
     </div>
         <div class="menu-item-card-right">
-    <a @click="deleteItem(id)" class="menu-item-button"><i class="material-icons">delete_outline</i></a>
-    <a class="menu-item-button" href="#"><i class="material-icons">edit</i></a>
+    <a @click="deleteItem(item)" class="menu-item-button"><i class="material-icons">delete_outline</i></a>
+    <a @click="openEditModal(item)" class="menu-item-button" href="#"><i class="material-icons">edit</i></a>
         </div>
   </div>
 </div>
@@ -24,7 +24,7 @@ export default {
   props: {
     menuItems: Array,
     deleteItem: Function,
-    editItem: Function,
+    openEditModal: Function,
   },
 };
 </script>

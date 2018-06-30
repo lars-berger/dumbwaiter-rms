@@ -16,7 +16,7 @@ export default {
   data: function() {
     return {
       selectedTab: 'food',
-      modalVisible: false,
+      openModal: null,
       menuItems: {
         food: this.$store.state.menuItems.food,
         drinks: this.$store.state.menuItems.drinks,
@@ -30,28 +30,26 @@ export default {
         this.selectedTab = newTab;
       }
     },
-    toggleModal() {
-      this.modalVisible = this.modalVisible ? false : true;
+    toggleModal(category) {
+      this.openModal = this.openModal ? null : category;
     },
-    deleteItem(idToDelete) {
-      api
-        .request('PUT', '/delete', { id: idToDelete })
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
-    },
-    editItem(newInfo) {
+    openEditModal(newInfo) {
       const data = {
         name: newInfo.name,
         description: newInfo.description,
         price: newInfo.price,
       };
-
-      api
-        .request('PUT', '/edit', data)
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => console.log(err));
+    },
+    async deleteItem(product) {
+      const test = await this.$store.dispatch(
+        'apolloQuery',
+        {
+          queryType: 'mutation',
+          queryName: 'DELETE_PRODUCT',
+          data: product.id,
+        }
+      );
+      console.log('deleted', test);
     },
   },
 };
@@ -59,7 +57,7 @@ export default {
 
 <template>
   <div class="Dashboard">
-    <NewFoodModal v-if="modalVisible" v-bind="{toggleModal}" />
+    <NewFoodModal v-if="openModal" v-bind="{toggleModal}" />
     <SideNav page="menu" />
 
     <div class="dash-container">
@@ -69,9 +67,9 @@ export default {
         <h1>MENU</h1>
 
         <div class="menu-buttons-wrapper">
-          <a @click="toggleModal" class="btn menu-add-button" href="#">+ MEAL</a>
-          <a class="btn menu-add-button" href="#">+ DRINK</a>
-          <a class="btn menu-add-button" href="#">+ DESSERT</a>
+          <a @click="toggleModal('food')" class="btn menu-add-button" href="#">+ MEAL</a>
+          <a @click="toggleModal('drinks')" class="btn menu-add-button" href="#">+ DRINK</a>
+          <a @click="toggleModal('desserts')" class="btn menu-add-button" href="#">+ DESSERT</a>
         </div>
 
         <div class="menu-nav">
@@ -88,10 +86,10 @@ export default {
           </ul>
         </div>
 
-        <MenuItems :menuItems="menuItems.food" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'food'"
+        <MenuItems :menuItems="menuItems.food" v-bind="{deleteItem, openEditModal }" v-if="selectedTab === 'food'"
         />
-        <MenuItems :menuItems="menuItems.drinks" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'drinks'" />
-        <MenuItems :menuItems="menuItems.desserts" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'desserts'" />
+        <MenuItems :menuItems="menuItems.drinks" v-bind="{deleteItem, openEditModal }" v-if="selectedTab === 'drinks'" />
+        <MenuItems :menuItems="menuItems.desserts" v-bind="{deleteItem, openEditModal }" v-if="selectedTab === 'desserts'" />
 
       </div>
     </div>

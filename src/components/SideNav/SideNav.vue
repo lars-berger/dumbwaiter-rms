@@ -17,8 +17,8 @@
             <i class="material-icons">fastfood</i>
           </li>
         </router-link>
-        <router-link to="/tables">
-          <li :class="{selected: props.page === 'tables'}">
+        <router-link to="/layout">
+          <li :class="{selected: props.page === 'layout'}">
             <i class="material-icons">view_quilt</i>
           </li>
         </router-link>

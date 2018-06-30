@@ -27,6 +27,18 @@ const GET_RESTAURANT_DATA = function(id = 1) {
   `;
 };
 
+const DELETE_PRODUCT = function(id) {
+  return `
+  mutation {
+    deleteProduct(
+      id: ${Number(id)}
+    ) {
+      id
+    }
+  }
+  `;
+};
+
 const ADD_PRODUCT = function(product) {
   return `
   mutation {
@@ -59,4 +71,5 @@ export {
   GET_RESTAURANT_DATA,
   ADD_PRODUCT,
   ADD_CATEGORY_TO_PRODUCT,
+  DELETE_PRODUCT,
 };
