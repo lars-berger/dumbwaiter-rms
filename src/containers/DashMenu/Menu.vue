@@ -49,6 +49,10 @@ export default {
           data: product.id,
         }
       );
+      await this.$store.dispatch('apolloQuery', {
+        queryType: 'query',
+        queryName: 'GET_RESTAURANT_DATA',
+      });
       console.log('deleted', test);
     },
   },

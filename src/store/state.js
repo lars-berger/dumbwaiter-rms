@@ -5,34 +5,6 @@ export default {
   restaurantInfo: {},
   menuItems: {},
   tables: [],
-  // menuItems: {
-  //   food: [
-  //     {
-  //       id: 1,
-  //       name: 'Classic Bacon Burger',
-  //     },
-  //     {
-  //       id: 2,
-  //       name: 'Classic Bacon Burger',
-  //     },
-  //   ],
-  //   drinks: [
-  //     {
-  //       id: 3,
-  //       name: 'Classic Bacon Burger',
-  //     },
-  //     {
-  //       id: 4,
-  //       name: 'Classic Bacon Burger',
-  //     },
-  //   ],
-  //   desserts: [
-  //     {
-  //       id: 6,
-  //       name: 'Classic Bacon Burger',
-  //     },
-  //   ],
-  // },
   orders: [
     {
       orderId: '112',

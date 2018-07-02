@@ -39,9 +39,8 @@ export default {
       });
     });
 
+    state.tables = tables;
+
     state.userRefreshed = false;
   },
-  // ADD_TABLE() {
-  //   state.
-  // },
 };

@@ -71,12 +71,12 @@ const ADD_CATEGORY_TO_PRODUCT = function(product) {
   `;
 };
 
-const ADD_TABLE = function(product) {
+const ADD_TABLE = function(table) {
   return `
   mutation {
-    addCategoryToProduct(
-      id: ${Number(product.id)}
-      categoryName: "${product.category}"
+    addTable(
+      name: "${table.number}"
+      restaurantId: "1"
     ) {
       id
     }
@@ -89,4 +89,5 @@ export {
   ADD_PRODUCT,
   ADD_CATEGORY_TO_PRODUCT,
   DELETE_PRODUCT,
+  ADD_TABLE,
 };
