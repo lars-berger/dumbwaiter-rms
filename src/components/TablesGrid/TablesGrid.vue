@@ -1,48 +1,48 @@
 <script>
-  import VueDraggableResizable from 'vue-draggable-resizable';
+import VueDraggableResizable from 'vue-draggable-resizable';
 
-  export default {
-    components: {
-      VueDraggableResizable,
+export default {
+  components: {
+    VueDraggableResizable,
+  },
+  data: function() {
+    return {};
+  },
+  computed: {
+    tables() {
+      return this.$store.state.tables;
     },
-    data: function () {
-      return {};
+  },
+  methods: {
+    showDropdown: id => {
+      document.getElementById(id).classList.toggle('show');
     },
-    computed: {
-      tables() {
-        return this.$store.state.tables;
-      }
+    getToken: async function(id) {
+      await this.$store.dispatch('apolloQuery', {
+        queryType: 'mutation',
+        queryName: 'CONNECT_TABLE',
+        data: id,
+      });
+      await this.$store.dispatch('apolloQuery', {
+        queryType: 'query',
+        queryName: 'GET_RESTAURANT_DATA',
+      });
     },
-    methods: {
-      showDropdown: id => {
-        document.getElementById(id).classList.toggle('show');
-      },
-      getToken: async function (id) {
-        await this.$store.dispatch('apolloQuery', {
-          queryType: 'mutation',
-          queryName: 'CONNECT_TABLE',
-          data: id,
-        });
-        await this.$store.dispatch('apolloQuery', {
-          queryType: 'query',
-          queryName: 'GET_RESTAURANT_DATA',
-        });
-      },
-    },
-  };
-  window.onclick = event => {
-    if (!event.target.matches('.dropbtn')) {
-      var dropdowns = document.getElementsByClassName(
-        'dropdown-content'
-      );
-      for (let i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
+  },
+};
+window.onclick = event => {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName(
+      'dropdown-content'
+    );
+    for (let i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
       }
     }
-  };
+  }
+};
 </script>
 
 <template>
@@ -68,3 +68,4 @@
 </template>
 
 <style src="./TablesGrid.css">
+
