@@ -6,6 +6,7 @@ import LoginRegister from './containers/LoginRegister/LoginRegister.vue';
 import Orders from './containers/DashOrders/Orders.vue';
 import Menu from './containers/DashMenu/Menu.vue';
 import Layout from './containers/DashLayout/Layout.vue';
+import Tables from './containers/DashTables/Tables.vue';
 
 import store from './store';
 
@@ -29,6 +30,11 @@ const router = new VueRouter({
       path: '/menu',
       component: Menu,
       beforeEnter: ProtectRoute,
+    },
+    {
+      path: '/tables',
+      component: Tables,
+      // beforeEnter: ProtectRoute,
     },
     {
       path: '/layout',
