@@ -9,7 +9,7 @@ export default {
   },
   data: function() {
     return {
-      tables: [],
+      tables: this.$store.state.tables,
     };
   },
   methods: {
@@ -31,6 +31,10 @@ export default {
 
       <div class="content">
         <h1 class="orders-h1">TABLES</h1>
+
+        <div v-for="(table, index) in tables" :key="index">
+          <p>foidsafoids</p>
+        </div>
 
           <button @click="addTable"></button>
 

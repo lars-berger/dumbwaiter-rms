@@ -34,7 +34,7 @@ const router = new VueRouter({
     {
       path: '/tables',
       component: Tables,
-      // beforeEnter: ProtectRoute,
+      beforeEnter: ProtectRoute,
     },
     {
       path: '/layout',

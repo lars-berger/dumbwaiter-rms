@@ -4,6 +4,7 @@ export default {
   userRefreshed: true,
   restaurantInfo: {},
   menuItems: {},
+  tables: [],
   // menuItems: {
   //   food: [
   //     {

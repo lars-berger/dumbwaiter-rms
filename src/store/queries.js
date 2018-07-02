@@ -10,6 +10,10 @@ const GET_RESTAURANT_DATA = function(id = 1) {
       photos {
         url
       }
+      tables {
+        id
+        name
+      }
       products {
         id
         name
@@ -55,6 +59,19 @@ const ADD_PRODUCT = function(product) {
 };
 
 const ADD_CATEGORY_TO_PRODUCT = function(product) {
+  return `
+  mutation {
+    addCategoryToProduct(
+      id: ${Number(product.id)}
+      categoryName: "${product.category}"
+    ) {
+      id
+    }
+  }
+  `;
+};
+
+const ADD_TABLE = function(product) {
   return `
   mutation {
     addCategoryToProduct(

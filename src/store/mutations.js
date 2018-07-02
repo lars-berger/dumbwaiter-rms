@@ -2,6 +2,7 @@
 
 export default {
   GET_RESTAURANT_DATA(state, info) {
+    console.log('all restaurant data', info);
     const mains = [];
     const drinks = [];
     const desserts = [];
@@ -29,12 +30,18 @@ export default {
     state.menuItems.food = mains;
     state.menuItems.drinks = drinks;
     state.menuItems.desserts = desserts;
+
+    const tables = [];
+
+    info.restaurant[0].tables.map(table => {
+      tables.push({
+        name: table.name,
+      });
+    });
+
     state.userRefreshed = false;
   },
-  SET_USER(state, user) {
-    state.user = user;
-  },
-  SET_TOKEN(state, token) {
-    state.token = token;
-  },
+  // ADD_TABLE() {
+  //   state.
+  // },
 };
