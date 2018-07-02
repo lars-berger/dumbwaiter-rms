@@ -1,0 +1,37 @@
+/* ********************************************************* */
+/*                        NAVBAR                             */
+/* ********************************************************* */
+
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  height: 4.3rem;
+  min-height: 4.3rem;
+  padding-right: 2vw;
+  background-color: white;
+  font-family: sans-serif;
+  color: rgb(80, 80, 80); /* rgb(90, 90, 90); */
+  border-bottom: 0.08rem solid rgb(222, 225, 231);   /* #C0C6D2 */
+}
+
+.navbar > ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.navbar i {
+  color: rgb(80, 80, 80);
+  font-size: 1.5rem;
+}
+
+.navbar-name {
+  color: rgb(80, 80, 80);
+  margin-top: -0.1rem;
+  margin-left: 2.5rem;
+}
+
+i.dropdown-icon {
+  margin-left: 1rem;
+  font-size: 2rem;
+}

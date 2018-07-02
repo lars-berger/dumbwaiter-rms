@@ -1,40 +1,30 @@
 import gql from 'graphql-tag';
 import graphqlClient from '../graphql';
+import * as QUERY from './queries';
 
 export default {
+  async apolloQuery({ commit }, args) {
+    const query = QUERY[args.queryName](args.data);
 
-  async fetchRestaurantData({ commit }, id) {
-    let response = await graphqlClient.query({
-      query: gql`
-        {
-          restaurant(id: ${id}) {
-            id
-            name
-            description
-            latitude
-            longitude
-            photos {
-              url
-            }
-            tables {
-              name
-              positionX
-              positionY
-            }
-            products {
-              name
-              price
-              categories {
-                name
-              }
-              photos {
-                url
-              }
-            }
-          }
-        }
-      `,
-    });
-    await commit('SET_RESTAURANT_DATA', response.data);
+    let response;
+    if (args.queryType === 'query') {
+      response = await graphqlClient.query({
+        query: gql`
+          ${query}
+        `,
+      });
+
+      await commit(args.queryName, response.data);
+    }
+
+    if (args.queryType === 'mutation') {
+      response = await graphqlClient.mutate({
+        mutation: gql`
+          ${query}
+        `,
+      });
+    }
+    console.log('>> response from query', response);
+    return await response.data;
   },
-}
+};

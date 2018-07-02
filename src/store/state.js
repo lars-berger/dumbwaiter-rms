@@ -1,29 +1,58 @@
 export default {
-  serverURI: 'http://localhost:8080',
   user: null,
   token: null,
+  userRefreshed: true,
   restaurantInfo: {},
-  menuItems: {
-    food: [{
-      id: 1,
-      name: 'Classic Bacon Burger'
+  menuItems: {},
+  tables: [],
+  orders: [
+    {
+      orderId: '112',
+      orderItems: [
+        {
+          name: 'Classic Bacon Burger',
+          quantity: 1,
+          // special instructions
+        },
+        {
+          name: 'Classic Bacon Burger',
+          quantity: 2,
+          // special instructions
+        },
+      ],
+      table: 37,
     },
     {
-      id: 2,
-      name: 'Classic Bacon Burger'
-    }],
-    drinks: [{
-      id: 3,
-      name: 'Classic Bacon Burger'
+      orderId: '113',
+      orderItems: [
+        {
+          name: 'Classic Bacon Burger',
+          quantity: 1,
+          // special instructions
+        },
+        {
+          name: 'Classic Bacon Burger',
+          quantity: 2,
+          // special instructions
+        },
+      ],
+      table: 37,
     },
     {
-      id: 4,
-      name: 'Classic Bacon Burger'
-    }],
-    desserts: [
-    {
-      id: 6,
-      name: 'Classic Bacon Burger'
-    }],
-  },
-}
+      orderId: '114',
+      orderItems: [
+        {
+          name: 'Classic Bacon Burger',
+          quantity: 1,
+          // special instructions
+        },
+        {
+          name: 'Classic Bacon Burger',
+          quantity: 2,
+          // special instructions
+        },
+      ],
+      table: 37,
+    },
+  ],
+};

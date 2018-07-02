@@ -15,3 +15,7 @@
     </ul>
   </div>
 </template>
+
+
+<style src="./TopNav.css" scoped>
+

@@ -1,0 +1,18 @@
+.tables-container {
+  display: flex;
+  align-items: flex-start;
+  min-height: 40vh;
+  flex-wrap: wrap;
+}
+
+.table {
+  border: 2px solid rgb(92, 92, 92);
+  /* background-color: #fff; */
+  min-height: 10rem;
+  min-width: 10rem;
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg); 
+  -webkit-transform: rotate(45deg);
+  margin: 3rem 7rem 6rem 3rem;
+  cursor: pointer;
+}

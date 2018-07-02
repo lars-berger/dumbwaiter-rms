@@ -1,6 +1,6 @@
 <script>
-import LoginForm from './../../components/LoginForm/LoginForm.vue';
-import RegisterForm from './../../components/RegisterForm/RegisterForm.vue';
+import LoginForm from '@/components/LoginForm/LoginForm.vue';
+import RegisterForm from '@/components/RegisterForm/RegisterForm.vue';
 export default {
   name: 'Login',
   props: {
@@ -10,9 +10,12 @@ export default {
     LoginForm,
     RegisterForm,
   },
-  data: () => ({
-    showLogin: true,
-  }),
+  data: function() {
+    return {
+      imgUrl: '@/assets/images/test.jpg',
+      showLogin: true,
+    };
+  },
   mounted() {
     if (window.location.pathname === '/register') {
       this.showLogin = false;
@@ -37,7 +40,5 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped>
-@import '@/assets/sass/materialize.scss';
-@import 'LoginRegister.css';
-</style>
+<style src="./LoginRegister.css">
+

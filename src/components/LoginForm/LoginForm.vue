@@ -1,4 +1,5 @@
 <script>
+import api from '@/api';
 export default {
   name: 'Login',
   props: {
@@ -6,55 +7,55 @@ export default {
   },
   data: () => ({
     login: {
-      email: '',
-      password: '',
+      email: 'lars.berger@yahoo.com',
+      password: 'test',
     },
+    errorMessage: null,
   }),
   methods: {
     async handleSubmit() {
-      const fetch = await fetch(
-        'http://localhost:8080/log-in',
-        {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email: this.login.email,
-            password: this.login.password,
-          }),
-        }
-      )
-        .then(res => res.json())
-        .catch(data => false);
-        
-      if (fetch) {
-        await this.$store.dispatch('fetchRestaurantData', fetch.id);  //fetch.id is the user's id
-        this.$router.push('/dashboard');
+      const data = {
+        username: this.login.email,
+        password: this.login.password,
+      };
+
+      if (!data.username || !data.password) {
+        this.errorMessage =
+          'Please provide a username and password';
       }
-      
-      // else handle login error
+
+      const user = await api
+        .request('POST', '/login-rms', data)
+        .catch(() => false);
+
+      console.log(user);
+
+      if (!user || !user.token) {
+        this.errorMessage = 'Incorrect login credentials';
+      }
+
+      if (user.token) {
+        await localStorage.setItem('token', user.token);
+        await this.$store.dispatch('apolloQuery', {
+          queryType: 'query',
+          queryName: 'GET_RESTAURANT_DATA',
+        });
+        this.$router.push('/orders');
+      }
     },
   },
 };
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form class="card-form" @submit.prevent="handleSubmit">
     <input v-model="login.email" type="text" placeholder="Email">
     <input v-model="login.password" type="text" placeholder="Password">
+    <p v-if="errorMessage" class="error-message">{{errorMessage}}</p>
+        <input type="submit" value="LOG IN" class="btn btn-login">
     <div class="card-buttons">
-      <div class="card-buttons-left">
-        <input type="submit" value="Submit" class="btn btn-login">
-      </div>
-      <div class="card-buttons-right">
-        <a class="btn-login-right" href="/register">Register</a>
-        <a class="btn-login-right" href="#">Forgot password</a>
-      </div>
+        <a class="" href="/register">Register</a>
+        <a class="" href="#">Forgot password</a>
     </div>
   </form>
 </template>
-
-<style lang="scss" scoped>
-</style>

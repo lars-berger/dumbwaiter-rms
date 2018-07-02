@@ -1,76 +1,67 @@
 <script>
-  import TopNav from '@/components/TopNav/TopNav.vue';
-  import SideNav from '@/components/SideNav/SideNav.vue';
-  import MenuItems from '@/components/MenuItems/MenuItems.vue';
-  import NewFoodModal from '@/components/NewFoodModal/NewFoodModal.vue';
-  export default {
-    name: 'Login',
-    props: {},
-    components: {
-      TopNav,
-      SideNav,
-      MenuItems,
-      NewFoodModal,
+import api from '@/api';
+import TopNav from '@/components/TopNav/TopNav.vue';
+import SideNav from '@/components/SideNav/SideNav.vue';
+import MenuItems from '@/components/MenuItems/MenuItems.vue';
+import NewFoodModal from '@/components/NewFoodModal/NewFoodModal.vue';
+export default {
+  name: 'Login',
+  props: {},
+  components: {
+    TopNav,
+    SideNav,
+    MenuItems,
+    NewFoodModal,
+  },
+  data: function() {
+    return {
+      selectedTab: 'food',
+      openModal: null,
+      menuItems: {
+        food: this.$store.state.menuItems.food,
+        drinks: this.$store.state.menuItems.drinks,
+        desserts: this.$store.state.menuItems.desserts,
+      },
+    };
+  },
+  methods: {
+    changeTab(newTab) {
+      if (newTab !== this.selectedTab) {
+        this.selectedTab = newTab;
+      }
     },
-    data: function () {
-      return {
-        selectedTab: 'food',
-        modalVisible: false,
-        menuItems: {
-          food: this.$store.state.menuItems.food,
-          drinks: this.$store.state.menuItems.drinks,
-          desserts: this.$store.state.menuItems.desserts,
-        },
+    toggleModal(category) {
+      this.openModal = this.openModal ? null : category;
+    },
+    openEditModal(newInfo) {
+      const data = {
+        name: newInfo.name,
+        description: newInfo.description,
+        price: newInfo.price,
       };
     },
-    methods: {
-      changeTab(newTab) {
-        if (newTab !== this.selectedTab) this.selectedTab = newTab;
-      },
-      toggleModal() {
-        this.modalVisible = this.modalVisible ? false : true;
-      },
-      deleteItem(idToDelete) {
-        fetch('http://example.com/delete-item', {
-          method: 'DELETE',
-          headers: {
-            Accept: 'application/json, text/plain',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-          body: JSON.stringify({
-            id: idToDelete,
-          }),
-        })
-          .then(res => res.json())
-          .then(data => console.log(data))
-          .catch(err => console.log(err));
-      },
-      editItem(newInfo) {
-        fetch('http://example.com/edit-item', {
-          method: 'PUT',
-          headers: {
-            Accept: 'application/json, text/plain',
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-          body: JSON.stringify({
-            name: newInfo.name,
-            description: newInfo.description,
-            price: newInfo.price,
-          }),
-        })
-          .then(res => res.json())
-          .then(data => console.log(data))
-          .catch(err => console.log(err));
-      },
+    async deleteItem(product) {
+      const test = await this.$store.dispatch(
+        'apolloQuery',
+        {
+          queryType: 'mutation',
+          queryName: 'DELETE_PRODUCT',
+          data: product.id,
+        }
+      );
+      await this.$store.dispatch('apolloQuery', {
+        queryType: 'query',
+        queryName: 'GET_RESTAURANT_DATA',
+      });
+      console.log('deleted', test);
     },
-  };
+  },
+};
 </script>
 
 <template>
   <div class="Dashboard">
-    <NewFoodModal v-if="modalVisible" v-bind="{toggleModal}" />
+    <NewFoodModal v-if="openModal" v-bind="{toggleModal}" :category="openModal"/>
     <SideNav page="menu" />
 
     <div class="dash-container">
@@ -80,15 +71,15 @@
         <h1>MENU</h1>
 
         <div class="menu-buttons-wrapper">
-          <a @click="toggleModal" class="menu-button" href="#">+ FOOD</a>
-          <a class="menu-button" href="#">+ DRINK</a>
-          <a class="menu-button" href="#">+ DESSERT</a>
+          <a @click="toggleModal('FOOD')" class="btn menu-add-button" href="#">+ MEAL</a>
+          <a @click="toggleModal('DRINKS')" class="btn menu-add-button" href="#">+ DRINK</a>
+          <a @click="toggleModal('DESSERTS')" class="btn menu-add-button" href="#">+ DESSERT</a>
         </div>
 
         <div class="menu-nav">
           <ul class="menu-nav-left">
             <a @click="changeTab('food')" :class="{selected: selectedTab === 'food'}" href="#">
-              <li>FOOD</li>
+              <li>MEALS</li>
             </a>
             <a @click="changeTab('drinks')" :class="{selected: selectedTab === 'drinks'}" href="#">
               <li>DRINKS</li>
@@ -99,13 +90,10 @@
           </ul>
         </div>
 
-        <!-- <MenuItems v-for="item of menuItems.food" :key="item.id" :a="item.a" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'food'"
-        /> -->
-
-        <MenuItems v-for="item of menuItems.food" :key="item.id" :name="item.name" :id="item.id" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'food'"
+        <MenuItems :menuItems="menuItems.food" v-bind="{deleteItem, openEditModal }" v-if="selectedTab === 'food'"
         />
-        <MenuItems v-for="item of menuItems.drinks" :key="item.id" :name="item.name" :id="item.id" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'drinks'" />
-        <MenuItems v-for="item of menuItems.desserts" :key="item.id" :name="item.name" :id="item.id" v-bind="{deleteItem, editItem}" v-if="selectedTab === 'desserts'" />
+        <MenuItems :menuItems="menuItems.drinks" v-bind="{deleteItem, openEditModal }" v-if="selectedTab === 'drinks'" />
+        <MenuItems :menuItems="menuItems.desserts" v-bind="{deleteItem, openEditModal }" v-if="selectedTab === 'desserts'" />
 
       </div>
     </div>
@@ -113,5 +101,5 @@
 </template>
 
 <style lang="scss" scoped>
-  @import 'Menu.css';
+@import 'Menu.css';
 </style>
