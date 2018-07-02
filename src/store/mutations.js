@@ -35,6 +35,7 @@ export default {
 
     info.restaurant[0].tables.map(table => {
       tables.push({
+        id: table.id,
         name: table.name,
       });
     });

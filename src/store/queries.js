@@ -31,6 +31,37 @@ const GET_RESTAURANT_DATA = function(id = 1) {
   `;
 };
 
+const REGISTER_RESTAURANT = function(restaurant) {
+  return `
+  mutation {
+    createRestaurant(
+      name: "${restaurant.name}"
+      latitude: "${restaurant.latitude}"
+      longitude: "${restaurant.longitude}"
+      type: "a"
+      photo: "a"
+      description: "a"
+    ) {
+      id
+    }
+  }
+  `;
+};
+
+const REGISTER_OWNER = function(owner) {
+  return `
+  mutation {
+    createOwner(
+      name: "${owner.name}"
+      password: "${owner.password}"
+      email: "${owner.email}"
+    ) {
+      id
+    }
+  }
+  `;
+};
+
 const DELETE_PRODUCT = function(id) {
   return `
   mutation {
@@ -84,10 +115,25 @@ const ADD_TABLE = function(table) {
   `;
 };
 
+const DELETE_TABLE = function(id) {
+  return `
+  mutation {
+    deleteTable(
+      id: ${Number(id)}
+    ) {
+      id
+    }
+  }
+  `;
+};
+
 export {
   GET_RESTAURANT_DATA,
+  REGISTER_RESTAURANT,
+  REGISTER_OWNER,
   ADD_PRODUCT,
   ADD_CATEGORY_TO_PRODUCT,
   DELETE_PRODUCT,
   ADD_TABLE,
+  DELETE_TABLE,
 };
