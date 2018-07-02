@@ -2,6 +2,7 @@
 export default {
   name: 'NewFoodModal',
   props: {
+    category: String,
     toggleModal: Function,
     // existing data - for edit functionality
   },
@@ -42,7 +43,7 @@ export default {
         queryType: 'mutation',
         data: {
           id: addedProduct.createProduct.id,
-          category: 'foods',
+          category: this.category.toLowerCase(),
         },
       });
 
@@ -61,7 +62,7 @@ export default {
     <div id="modal" :class="{'modal-visible': showModal}">
       <div class="modal-container">
         <i @click="toggleModal" class="material-icons close-modal">close</i>
-        <h2>NEW MEAL ITEM</h2>
+        <h2>NEW {{category}} ITEM</h2>
         <hr>
         <form @submit.prevent="handleSubmit" class="modal-form">
 

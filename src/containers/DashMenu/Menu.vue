@@ -57,7 +57,7 @@ export default {
 
 <template>
   <div class="Dashboard">
-    <NewFoodModal v-if="openModal" v-bind="{toggleModal}" />
+    <NewFoodModal v-if="openModal" v-bind="{toggleModal}" :category="openModal"/>
     <SideNav page="menu" />
 
     <div class="dash-container">
@@ -67,9 +67,9 @@ export default {
         <h1>MENU</h1>
 
         <div class="menu-buttons-wrapper">
-          <a @click="toggleModal('food')" class="btn menu-add-button" href="#">+ MEAL</a>
-          <a @click="toggleModal('drinks')" class="btn menu-add-button" href="#">+ DRINK</a>
-          <a @click="toggleModal('desserts')" class="btn menu-add-button" href="#">+ DESSERT</a>
+          <a @click="toggleModal('FOOD')" class="btn menu-add-button" href="#">+ MEAL</a>
+          <a @click="toggleModal('DRINKS')" class="btn menu-add-button" href="#">+ DRINK</a>
+          <a @click="toggleModal('DESSERTS')" class="btn menu-add-button" href="#">+ DESSERT</a>
         </div>
 
         <div class="menu-nav">
