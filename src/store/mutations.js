@@ -34,9 +34,16 @@ export default {
     const tables = [];
 
     info.restaurant[0].tables.map(table => {
+      const code = table.activeCode[0]
+        ? table.activeCode[0].code
+        : null;
       tables.push({
         id: table.id,
         name: table.name,
+        activeCode: code,
+        width: '400px',
+        height: '400px',
+        resizable: true,
       });
     });
 

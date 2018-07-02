@@ -13,6 +13,9 @@ const GET_RESTAURANT_DATA = function(id = 1) {
       tables {
         id
         name
+        activeCode {
+          code
+        }
       }
       products {
         id
@@ -127,6 +130,18 @@ const DELETE_TABLE = function(id) {
   `;
 };
 
+const CONNECT_TABLE = function(id) {
+  return `
+  mutation {
+    generateTableCode(id: "${id}") {
+      activeCode {
+        code
+      }
+    }
+  }  
+  `;
+};
+
 export {
   GET_RESTAURANT_DATA,
   REGISTER_RESTAURANT,
@@ -136,4 +151,5 @@ export {
   DELETE_PRODUCT,
   ADD_TABLE,
   DELETE_TABLE,
+  CONNECT_TABLE,
 };

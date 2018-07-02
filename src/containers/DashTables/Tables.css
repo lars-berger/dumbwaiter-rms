@@ -1,32 +1,7 @@
-.tables-container {
-  display: flex;
-  align-items: flex-start;
-  min-height: 40vh;
-  flex-wrap: wrap;
-  background-color: white;
-}
-
-.table {
-  border: 2px solid rgb(92, 92, 92);
-  border-radius: 2px;
-  background-color: #fff;
-  min-height: 10rem;
-  min-width: 10rem;
-  margin: 3rem 7rem 6rem 3rem;
-  cursor: pointer;
-  resize: both;
-  overflow: auto;
-}
-
-.parent {
-  position: relative;
-  width: 20rem;
-  height: 20rem;
-}
-
+/* DROPDOWN ON CLICK */
 
 .dropbtn {
-  /* color: white; */
+  color: white;
   padding: 16px;
   font-size: 16px;
   cursor: pointer;
