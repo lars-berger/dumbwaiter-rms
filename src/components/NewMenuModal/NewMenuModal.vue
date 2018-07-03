@@ -26,6 +26,7 @@ export default {
   },
   methods: {
     async handleSubmit() {
+      console.log('lars smells');
       const data = {
         name: this.foodItem.name,
         description: this.foodItem.description,
@@ -114,3 +115,4 @@ export default {
 </template>
 
 <style src="./NewMenuModal.css" scoped>
+
