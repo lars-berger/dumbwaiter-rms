@@ -47,7 +47,7 @@ export default {
       });
     });
 
-    state.tables = tables;
+    state.tables = tables.slice(0, 3);
 
     state.userRefreshed = false;
   },

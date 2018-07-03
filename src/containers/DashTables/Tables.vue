@@ -46,9 +46,13 @@ export default {
       <div class="content">
         <h1 class="orders-h1">TABLES</h1>
 
-        <TablesGrid />
+        <div class="flex-container">
+          <TablesGrid />
+          <div class="right-container">
+            <button @click="addTable" class="btn">ADD A TABLE</button>
+          </div>
+        </div>
 
-        <button @click="addTable" class="btn">ADD A TABLE</button>
 
 
       </div>

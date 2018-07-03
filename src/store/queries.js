@@ -118,6 +118,22 @@ const ADD_TABLE = function(table) {
   `;
 };
 
+const UPDATE_TABLE = function(table) {
+  return `
+  mutation {
+    deleteTable(
+      id: ${Number(table.id)}
+      positionX: ${table.x}
+      positionY: ${table.y}
+      width: ${table.width}
+      height: ${table.height}
+    ) {
+      id
+    }
+  }
+  `;
+};
+
 const DELETE_TABLE = function(id) {
   return `
   mutation {

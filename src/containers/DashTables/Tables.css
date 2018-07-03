@@ -36,3 +36,12 @@
 .show {
   display: block;
 }
+
+.flex-container {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.right-container {
+  margin: 0 auto;
+}
