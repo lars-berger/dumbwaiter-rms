@@ -3,7 +3,7 @@ import api from '@/api';
 import TopNav from '@/components/TopNav/TopNav.vue';
 import SideNav from '@/components/SideNav/SideNav.vue';
 import MenuItems from '@/components/MenuItems/MenuItems.vue';
-import NewFoodModal from '@/components/NewFoodModal/NewFoodModal.vue';
+import NewMenuModal from '@/components/NewMenuModal/NewMenuModal.vue';
 export default {
   name: 'Login',
   props: {},
@@ -11,7 +11,7 @@ export default {
     TopNav,
     SideNav,
     MenuItems,
-    NewFoodModal,
+    NewMenuModal,
   },
   data: function() {
     return {
@@ -22,6 +22,7 @@ export default {
         drinks: this.$store.state.menuItems.drinks,
         desserts: this.$store.state.menuItems.desserts,
       },
+      editInfo: null,
     };
   },
   methods: {
@@ -29,6 +30,9 @@ export default {
       if (newTab !== this.selectedTab) {
         this.selectedTab = newTab;
       }
+    },
+    reset() {
+      this.editInfo = '';
     },
     toggleModal(category) {
       this.openModal = this.openModal ? null : category;
@@ -39,21 +43,19 @@ export default {
         description: newInfo.description,
         price: newInfo.price,
       };
+      this.editInfo = newInfo;
+      this.toggleModal(this.selectedTab);
     },
     async deleteItem(product) {
-      const test = await this.$store.dispatch(
-        'apolloQuery',
-        {
-          queryType: 'mutation',
-          queryName: 'DELETE_PRODUCT',
-          data: product.id,
-        }
-      );
+      const test = await this.$store.dispatch('apolloQuery', {
+        queryType: 'mutation',
+        queryName: 'DELETE_PRODUCT',
+        data: product.id,
+      });
       await this.$store.dispatch('apolloQuery', {
         queryType: 'query',
         queryName: 'GET_RESTAURANT_DATA',
       });
-      console.log('deleted', test);
     },
   },
 };
@@ -61,7 +63,7 @@ export default {
 
 <template>
   <div class="Dashboard">
-    <NewFoodModal v-if="openModal" v-bind="{toggleModal}" :category="openModal"/>
+    <NewMenuModal v-if="openModal" v-bind="{toggleModal, reset}" :item="editInfo" :category="openModal"/>
     <SideNav page="menu" />
 
     <div class="dash-container">
@@ -100,6 +102,4 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped>
-@import 'Menu.css';
-</style>
+<style src="./Menu.css" scoped>

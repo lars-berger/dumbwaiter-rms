@@ -19,9 +19,9 @@
       </div>
 
       <div class="order-buttons">
-        <a href="#"><i class="material-icons">outlined_flag</i></a>
-        <a href="#"><i class="material-icons">update</i></a>
-        <a href="#"><i class="material-icons">check</i></a>
+        <a @click="toggleModal('cooking')" href="#"><i class="material-icons">outlined_flag</i>COOKING</a>
+        <a @click="toggleModal('countdown')" href="#"><i class="material-icons">update</i>COUNTDOWN</a>
+        <a @click="toggleModal('complete')" href="#"><i class="material-icons">check</i>COMPLETE</a>
       </div>
     </div>
   </div>
@@ -31,6 +31,7 @@
 export default {
   props: {
     orders: Array,
+    toggleModal: Function,
   },
   methods: {
     formatTimestamp(timestamp) {

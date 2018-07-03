@@ -28,8 +28,6 @@ export default {
         .request('POST', '/login-rms', data)
         .catch(() => false);
 
-      console.log(user);
-
       if (!user || !user.token) {
         this.errorMessage = 'Incorrect login credentials';
       }

@@ -1,16 +1,47 @@
-.tables-container {
-  display: flex;
-  align-items: flex-start;
-  min-height: 40vh;
-  flex-wrap: wrap;
+/* DROPDOWN ON CLICK */
+
+.dropbtn {
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.table {
-  border: 2px solid rgb(92, 92, 92);
-  /* background-color: #fff; */
-  min-height: 10rem;
-  min-width: 10rem;
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
 
-  margin: 3rem 7rem 6rem 3rem;
-  cursor: pointer;
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {
+  background-color: #ddd;
+}
+
+.show {
+  display: block;
+}
+
+.flex-container {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.right-container {
+  margin: 0 auto;
 }

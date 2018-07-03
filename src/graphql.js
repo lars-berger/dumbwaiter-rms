@@ -18,6 +18,17 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+const defaultOptions = {
+  watchQuery: {
+    fetchPolicy: 'network-only',
+    errorPolicy: 'ignore',
+  },
+  query: {
+    fetchPolicy: 'network-only',
+    errorPolicy: 'all',
+  },
+};
+
 const httpLink = createHttpLink({
   uri: `${config.serverURI}/graphql`,
 });
@@ -28,4 +39,5 @@ export default new ApolloClient({
   // Using a cache for blazingly
   // fast subsequent queries.
   cache: new InMemoryCache(),
+  defaultOptions: defaultOptions,
 });

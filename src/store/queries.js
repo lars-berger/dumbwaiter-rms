@@ -13,6 +13,9 @@ const GET_RESTAURANT_DATA = function(id = 1) {
       tables {
         id
         name
+        activeCode {
+          code
+        }
       }
       products {
         id
@@ -26,6 +29,37 @@ const GET_RESTAURANT_DATA = function(id = 1) {
           url
         }
       }
+    }
+  }
+  `;
+};
+
+const REGISTER_RESTAURANT = function(restaurant) {
+  return `
+  mutation {
+    createRestaurant(
+      name: "${restaurant.name}"
+      latitude: "${restaurant.latitude}"
+      longitude: "${restaurant.longitude}"
+      type: "a"
+      photo: "a"
+      description: "a"
+    ) {
+      id
+    }
+  }
+  `;
+};
+
+const REGISTER_OWNER = function(owner) {
+  return `
+  mutation {
+    createOwner(
+      name: "${owner.name}"
+      password: "${owner.password}"
+      email: "${owner.email}"
+    ) {
+      id
     }
   }
   `;
@@ -84,10 +118,54 @@ const ADD_TABLE = function(table) {
   `;
 };
 
+const UPDATE_TABLE = function(table) {
+  return `
+  mutation {
+    deleteTable(
+      id: ${Number(table.id)}
+      positionX: ${table.x}
+      positionY: ${table.y}
+      width: ${table.width}
+      height: ${table.height}
+    ) {
+      id
+    }
+  }
+  `;
+};
+
+const DELETE_TABLE = function(id) {
+  return `
+  mutation {
+    deleteTable(
+      id: ${Number(id)}
+    ) {
+      id
+    }
+  }
+  `;
+};
+
+const CONNECT_TABLE = function(id) {
+  return `
+  mutation {
+    generateTableCode(id: "${id}") {
+      activeCode {
+        code
+      }
+    }
+  }  
+  `;
+};
+
 export {
   GET_RESTAURANT_DATA,
+  REGISTER_RESTAURANT,
+  REGISTER_OWNER,
   ADD_PRODUCT,
   ADD_CATEGORY_TO_PRODUCT,
   DELETE_PRODUCT,
   ADD_TABLE,
+  DELETE_TABLE,
+  CONNECT_TABLE,
 };
