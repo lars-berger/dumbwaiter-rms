@@ -6,12 +6,9 @@ export default {
     VueDraggableResizable,
   },
   data: function() {
-    return {};
-  },
-  computed: {
-    tables() {
-      return this.$store.state.tables;
-    },
+    return {
+      tables: this.$store.state.tables,
+    };
   },
   methods: {
     showDropdown: id => {

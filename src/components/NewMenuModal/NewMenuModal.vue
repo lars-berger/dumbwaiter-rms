@@ -109,3 +109,6 @@ export default {
     <div @click="toggleModal" :class="{'modal-visible': showModal}" id="mask"></div>
   </div>
 </template>
+
+<style src="./NewMenuModal.css" scoped>
+

@@ -3,7 +3,7 @@ import api from '@/api';
 import TopNav from '@/components/TopNav/TopNav.vue';
 import SideNav from '@/components/SideNav/SideNav.vue';
 import MenuItems from '@/components/MenuItems/MenuItems.vue';
-import NewFoodModal from '@/components/NewFoodModal/NewFoodModal.vue';
+import NewMenuModal from '@/components/NewMenuModal/NewMenuModal.vue';
 export default {
   name: 'Login',
   props: {},
@@ -11,7 +11,7 @@ export default {
     TopNav,
     SideNav,
     MenuItems,
-    NewFoodModal,
+    NewMenuModal,
   },
   data: function() {
     return {
@@ -53,7 +53,6 @@ export default {
         queryType: 'query',
         queryName: 'GET_RESTAURANT_DATA',
       });
-      console.log('deleted', test);
     },
   },
 };
@@ -61,7 +60,7 @@ export default {
 
 <template>
   <div class="Dashboard">
-    <NewFoodModal v-if="openModal" v-bind="{toggleModal}" :category="openModal"/>
+    <NewMenuModal v-if="openModal" v-bind="{toggleModal}" :category="openModal"/>
     <SideNav page="menu" />
 
     <div class="dash-container">
@@ -100,6 +99,5 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped>
-@import 'Menu.css';
-</style>
+<style src="./Menu.css" scoped>
+

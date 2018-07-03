@@ -1,26 +1,36 @@
 <script>
-import OrderItems from '@/components/OrderItems/OrderItems.vue';
-import TopNav from '@/components/TopNav/TopNav.vue';
-import SideNav from '@/components/SideNav/SideNav.vue';
-export default {
-  name: 'Orders',
-  props: {},
-  components: {
-    TopNav,
-    SideNav,
-    OrderItems,
-  },
-  data: function() {
-    return {
-      orders: this.$store.state.orders,
-      completedOrders: [],
-    };
-  },
-};
+  import OrderItems from '@/components/OrderItems/OrderItems.vue';
+  import TopNav from '@/components/TopNav/TopNav.vue';
+  import SideNav from '@/components/SideNav/SideNav.vue';
+  import OrderModal from '@/components/OrderModal/OrderModal.vue';
+  export default {
+    name: 'Orders',
+    props: {},
+    components: {
+      TopNav,
+      SideNav,
+      OrderItems,
+      OrderModal,
+    },
+    data: function () {
+      return {
+        orders: this.$store.state.orders,
+        completedOrders: [],
+        openModal: null,
+        modalOrder: 0,
+      };
+    },
+    methods: {
+      toggleModal: function(action) {
+        this.openModal = this.openModal ? null : action;
+      },
+    },
+  };
 </script>
 
 <template>
   <div class="Dashboard">
+    <OrderModal v-if="openModal" v-bind="{toggleModal}" :order="orders[modalOrder]" :action="openModal" />
     <SideNav page="orders" />
 
     <div class="dash-container">
@@ -32,7 +42,7 @@ export default {
         <div class="orders-empty-state" v-if="orders.length === 0">
           <h3 class="empty-state-header">No orders have been placed</h3>
         </div>
-        <OrderItems :orders="orders" v-else />
+        <OrderItems :orders="orders" :toggleModal="toggleModal" v-else />
 
         <h1 class="orders-h1">COMPLETED ORDERS</h1>
 
@@ -47,5 +57,5 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-@import 'Orders.css';
+  @import 'Orders.css';
 </style>
