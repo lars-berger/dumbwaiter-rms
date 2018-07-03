@@ -9,6 +9,14 @@
         </div>
       </div>
       <hr class="order-header-underline">
+<div v-if="complete">
+  
+</div>
+      <div v-else class="order-buttons">
+        <a @click="toggleModal('cooking')" href="#"><i class="material-icons">outlined_flag</i>COOKING</a>
+        <a @click="toggleModal('countdown')" href="#"><i class="material-icons">update</i>COUNTDOWN</a>
+        <a @click="toggleModal('complete')" href="#"><i class="material-icons">check</i>COMPLETE</a>
+      </div>
 
       <div v-for="(item, index) in order.orderItems" :key="index" class="order-item">
         <img class="order-item-img" src="@/assets/images/burger.png" alt="" srcset="">
@@ -18,11 +26,6 @@
         </div>
       </div>
 
-      <div class="order-buttons">
-        <a @click="toggleModal('cooking')" href="#"><i class="material-icons">outlined_flag</i>COOKING</a>
-        <a @click="toggleModal('countdown')" href="#"><i class="material-icons">update</i>COUNTDOWN</a>
-        <a @click="toggleModal('complete')" href="#"><i class="material-icons">check</i>COMPLETE</a>
-      </div>
     </div>
   </div>
 </template>
@@ -32,11 +35,10 @@ export default {
   props: {
     orders: Array,
     toggleModal: Function,
+    complete: Boolean,
   },
   methods: {
-    formatTimestamp(timestamp) {
-      console.log('f');
-    },
+    formatTimestamp(timestamp) {},
   },
 };
 </script>
