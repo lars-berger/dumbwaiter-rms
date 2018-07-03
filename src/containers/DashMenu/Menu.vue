@@ -22,9 +22,13 @@ export default {
         drinks: this.$store.state.menuItems.drinks,
         desserts: this.$store.state.menuItems.desserts,
       },
+      editInfo: null,
     };
   },
   methods: {
+    resetInfo() {
+      this.editInfo = '';
+    },
     changeTab(newTab) {
       if (newTab !== this.selectedTab) {
         this.selectedTab = newTab;
@@ -39,6 +43,9 @@ export default {
         description: newInfo.description,
         price: newInfo.price,
       };
+      this.editInfo = newInfo;
+      this.toggleModal(this.selectedTab);
+      // this.editInfo = '';
     },
     async deleteItem(product) {
       const test = await this.$store.dispatch(
@@ -61,7 +68,7 @@ export default {
 
 <template>
   <div class="Dashboard">
-    <NewFoodModal v-if="openModal" v-bind="{toggleModal}" :category="openModal"/>
+    <NewFoodModal v-if="openModal" v-bind="{toggleModal}" :item="editInfo" :category="openModal" :reset="resetInfo"/>
     <SideNav page="menu" />
 
     <div class="dash-container">

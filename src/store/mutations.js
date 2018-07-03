@@ -43,4 +43,20 @@ export default {
 
     state.userRefreshed = false;
   },
+
+  deleteItem(state, item) {
+    for (const prop in state.menuItems) {
+      for (
+        let i = 0;
+        i < state.menuItems.prop.length;
+        i++
+      ) {
+        if (item.name === state.menuItems.prop[i].name) {
+          prop.splice(i, 1);
+        }
+      }
+    }
+    console.log('state', state.menuItems);
+    console.log('item', item);
+  },
 };

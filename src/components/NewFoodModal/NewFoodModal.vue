@@ -4,14 +4,19 @@ export default {
   props: {
     category: String,
     toggleModal: Function,
+    itemInfo: Object,
+    item: [String, Object],
+    reset: Function,
     // existing data - for edit functionality
   },
   data: function() {
     return {
       foodItem: {
-        name: '',
-        description: '',
-        price: '',
+        header: this.item ? 'Edit' : 'New',
+        name: this.item ? this.item.name : '',
+        description: this.item ? this.item.description : '',
+        price: this.item ? this.item.price : '',
+        submitButton: this.item ? 'update' : 'add',
       },
       showModal: false,
       priceInputFocused: false,
@@ -20,6 +25,7 @@ export default {
   },
   mounted() {
     this.showModal = true;
+    console.log('inside the modal', this.item.name);
   },
   methods: {
     async handleSubmit() {
@@ -28,26 +34,29 @@ export default {
         description: this.foodItem.description,
         price: Number(this.foodItem.price),
       };
+      if (this.item) {
+        console.log('sending an update to the database');
+      } else {
+        const addedProduct = await this.$store.dispatch(
+          'apolloQuery',
+          {
+            queryName: 'ADD_PRODUCT',
+            queryType: 'mutation',
+            data: data,
+          }
+        );
 
-      const addedProduct = await this.$store.dispatch(
-        'apolloQuery',
-        {
-          queryName: 'ADD_PRODUCT',
+        await this.$store.dispatch('apolloQuery', {
+          queryName: 'ADD_CATEGORY_TO_PRODUCT',
           queryType: 'mutation',
-          data: data,
-        }
-      );
+          data: {
+            id: addedProduct.createProduct.id,
+            category: this.category.toLowerCase(),
+          },
+        });
 
-      await this.$store.dispatch('apolloQuery', {
-        queryName: 'ADD_CATEGORY_TO_PRODUCT',
-        queryType: 'mutation',
-        data: {
-          id: addedProduct.createProduct.id,
-          category: this.category.toLowerCase(),
-        },
-      });
-
-      this.toggleModal();
+        this.toggleModal();
+      }
     },
     filesAdded(e) {
       const fileName = e.target.value.split('\\');
@@ -62,7 +71,7 @@ export default {
     <div id="modal" :class="{'modal-visible': showModal}">
       <div class="modal-container">
         <i @click="toggleModal" class="material-icons close-modal">close</i>
-        <h2>NEW {{category}} ITEM</h2>
+        <h2>{{foodItem.header}} {{category}} ITEM</h2>
         <hr>
         <form @submit.prevent="handleSubmit" class="modal-form">
 
@@ -70,7 +79,7 @@ export default {
             <div class="form-inline">
               <div class="form-field">
                 <p class="addnew-label">Name:</p>
-                <input v-model="foodItem.name" type="text" />
+                <input v-model="foodItem.name" type="text" :placeholder="foodItem.name"/>
               </div>
 
               <div class="form-field">
@@ -106,6 +115,6 @@ export default {
         </form>
       </div>
     </div>
-    <div @click="toggleModal" :class="{'modal-visible': showModal}" id="mask"></div>
+    <div @click="toggleModal(); reset()" :class="{'modal-visible': showModal}" id="mask" ></div>
   </div>
 </template>

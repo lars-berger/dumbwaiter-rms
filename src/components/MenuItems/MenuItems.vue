@@ -12,7 +12,7 @@
     </div>
         <div class="menu-item-card-right">
     <a @click="deleteItem(item)" class="menu-item-button"><i class="material-icons">delete_outline</i></a>
-    <a @click="openEditModal(item)" class="menu-item-button" href="#"><i class="material-icons">edit</i></a>
+    <a href="#login" @click="openEditModal(item)"><i class="material-icons">edit</i></a>
         </div>
   </div>
 </div>
@@ -22,9 +22,27 @@
 <script>
 export default {
   props: {
-    menuItems: Array,
-    deleteItem: Function,
     openEditModal: Function,
+    menuItems: Array,
+  },
+  data: function() {
+    return {
+      foodItem: {
+        name: '',
+        description: '',
+        price: '',
+      },
+      priceInputFocused: false,
+      fileName: '',
+    };
+  },
+  methods: {
+    deleteItem(item) {
+      event.preventDefault();
+      this.$store.commit('deleteItem', {
+        item,
+      });
+    },
   },
 };
 </script>

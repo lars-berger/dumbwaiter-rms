@@ -45,6 +45,9 @@ const router = new VueRouter({
 });
 
 new Vue({
+  data: {
+    showModal: false,
+  },
   router,
   store,
   render: h => <router-view />,

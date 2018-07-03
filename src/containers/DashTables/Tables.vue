@@ -28,10 +28,7 @@ export default {
     getToken: () => {
       console.log('getting a token');
     },
-    deleteTable: () => {
-      console.log('deleting a table');
-      console.log(this.$store.state.tables);
-    },
+    deleteTable: () => {},
   },
 };
 window.onclick = event => {
@@ -62,7 +59,9 @@ window.onclick = event => {
 
         <div class="tables-container ">
           <div @click="showDropdown(`myDropdown${index}`)" class="table dropdown dropbtn" v-for="(table, index) in tables" :key="index">
-
+<p>
+Table Number: {{index}}
+</p>
               <div :id="`myDropdown${index}`" class="dropdown-content">
                 <a @click ="getToken">get key from Marlon</a>
                 <a @click ="deleteTable">delete table</a>
@@ -130,4 +129,3 @@ window.onclick = event => {
 
 
 <style src="./Tables.css" scoped>
-
