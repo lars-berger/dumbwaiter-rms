@@ -22,6 +22,7 @@ export default {
         drinks: this.$store.state.menuItems.drinks,
         desserts: this.$store.state.menuItems.desserts,
       },
+      editInfo: null,
     };
   },
   methods: {
@@ -29,6 +30,9 @@ export default {
       if (newTab !== this.selectedTab) {
         this.selectedTab = newTab;
       }
+    },
+    reset() {
+      this.editInfo = '';
     },
     toggleModal(category) {
       this.openModal = this.openModal ? null : category;
@@ -39,16 +43,15 @@ export default {
         description: newInfo.description,
         price: newInfo.price,
       };
+      this.editInfo = newInfo;
+      this.toggleModal(this.selectedTab);
     },
     async deleteItem(product) {
-      const test = await this.$store.dispatch(
-        'apolloQuery',
-        {
-          queryType: 'mutation',
-          queryName: 'DELETE_PRODUCT',
-          data: product.id,
-        }
-      );
+      const test = await this.$store.dispatch('apolloQuery', {
+        queryType: 'mutation',
+        queryName: 'DELETE_PRODUCT',
+        data: product.id,
+      });
       await this.$store.dispatch('apolloQuery', {
         queryType: 'query',
         queryName: 'GET_RESTAURANT_DATA',
@@ -60,7 +63,7 @@ export default {
 
 <template>
   <div class="Dashboard">
-    <NewMenuModal v-if="openModal" v-bind="{toggleModal}" :category="openModal"/>
+    <NewMenuModal v-if="openModal" v-bind="{toggleModal, reset}" :editInfo="editInfo" :category="openModal"/>
     <SideNav page="menu" />
 
     <div class="dash-container">
