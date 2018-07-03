@@ -84,38 +84,25 @@
   margin: 0 auto;
 }
 
-#txt {
-  border:none;
-  outline:none;
-  margin: 0;
+.btn-markcomplete {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
 }
 
-label[for="txt"] {
-  border: 1px solid rgb(199, 199, 199);
-  border-radius: 2px;
-  background-color: white;
-  padding: 0.55rem 0.5rem;
+.order-item-container {
+  display: flex;
+  margin-bottom: 0.5rem;
+  justify-content: space-between;
+}
+
+.order-item-left {
+  display: flex;
+}
+
+.btn-markstatus {
+  margin-left: 1rem;
+  padding: 0.4rem;
   font-size: 0.8rem;
-
-}
-
-label[for="txt"].active {
-  outline: 0.1rem solid #11476e;
-  box-shadow: 0 0 0.5pt 0.5pt #11476e;
-}
-
-.addnew-label-price {
-  margin-bottom: 0.6rem;
-}
-
-input[type="file"] {
-  display: none;
-}
-
-.custom-file-upload {
-  border: 1px solid rgb(199, 199, 199);
-  background-color: #fff;
-  display: inline-block;
-  padding: 0.4rem 0.8rem;
-  cursor: pointer;
+  background-color: #1b537a;
 }

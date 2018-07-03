@@ -20,13 +20,10 @@ export default {
       };
 
       if (!data.username || !data.password) {
-        this.errorMessage =
-          'Please provide a username and password';
+        this.errorMessage = 'Please provide a username and password';
       }
 
-      const user = await api
-        .request('POST', '/login-rms', data)
-        .catch(() => false);
+      const user = await api.request('POST', '/login-rms', data).catch(() => false);
 
       if (!user || !user.token) {
         this.errorMessage = 'Incorrect login credentials';

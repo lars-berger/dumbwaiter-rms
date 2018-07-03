@@ -158,6 +158,47 @@ const CONNECT_TABLE = function(id) {
   `;
 };
 
+const ACTIVE_CONNECTION_DATA = function() {
+  return `
+  {
+    connection(status: "ACTIVE") {
+      id
+      status
+      createdAt
+      users {
+        id
+        name
+      }
+      orders{
+        id
+        status
+        createdAt
+        products {
+          product {
+            name
+            price
+            photos {
+              url
+            }
+            categories {
+              name
+            }
+          }
+          price
+        }
+      }
+      table {
+        id
+        name
+        activeCode {
+          code
+        }
+      }
+    }
+  } 
+  `;
+};
+
 export {
   GET_RESTAURANT_DATA,
   REGISTER_RESTAURANT,
@@ -168,4 +209,5 @@ export {
   ADD_TABLE,
   DELETE_TABLE,
   CONNECT_TABLE,
+  ACTIVE_CONNECTION_DATA,
 };

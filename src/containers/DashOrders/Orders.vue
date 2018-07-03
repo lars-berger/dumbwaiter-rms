@@ -1,31 +1,45 @@
 <script>
-  import OrderItems from '@/components/OrderItems/OrderItems.vue';
-  import TopNav from '@/components/TopNav/TopNav.vue';
-  import SideNav from '@/components/SideNav/SideNav.vue';
-  import OrderModal from '@/components/OrderModal/OrderModal.vue';
-  export default {
-    name: 'Orders',
-    props: {},
-    components: {
-      TopNav,
-      SideNav,
-      OrderItems,
-      OrderModal,
+import OrderItems from '@/components/OrderItems/OrderItems.vue';
+import TopNav from '@/components/TopNav/TopNav.vue';
+import SideNav from '@/components/SideNav/SideNav.vue';
+import OrderModal from '@/components/OrderModal/OrderModal.vue';
+export default {
+  name: 'Orders',
+  props: {},
+  components: {
+    TopNav,
+    SideNav,
+    OrderItems,
+    OrderModal,
+  },
+  data: function() {
+    return {
+      orders: [],
+      completedOrders: [],
+      openModal: null,
+      modalOrder: 0,
+    };
+  },
+  async beforeCreate() {
+    await this.$store.dispatch('apolloQuery', {
+      queryType: 'query',
+      queryName: 'ACTIVE_CONNECTION_DATA',
+    });
+    this.orders = this.$store.state.activeOrders;
+    // setInterval(() => {
+    //   this.$store.dispatch('apolloQuery', {
+    //     queryType: 'query',
+    //     queryName: 'ACTIVE_CONNECTION_DATA',
+    //   });
+    //   this.orders = this.$store.state.activeOrders;
+    // });
+  },
+  methods: {
+    toggleModal: function(action) {
+      this.openModal = this.openModal ? null : action;
     },
-    data: function () {
-      return {
-        orders: this.$store.state.orders,
-        completedOrders: [],
-        openModal: null,
-        modalOrder: 0,
-      };
-    },
-    methods: {
-      toggleModal: function(action) {
-        this.openModal = this.openModal ? null : action;
-      },
-    },
-  };
+  },
+};
 </script>
 
 <template>
@@ -57,5 +71,5 @@
 </template>
 
 <style lang="scss" scoped>
-  @import 'Orders.css';
+@import 'Orders.css';
 </style>
