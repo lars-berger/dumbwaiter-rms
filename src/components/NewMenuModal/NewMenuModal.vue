@@ -32,7 +32,12 @@ export default {
         price: Number(this.foodItem.price),
       };
       if (this.editInfo) {
-        console.log('send update through apollo');
+        data.id = this.item.id;
+        const editedProduct = await this.$store.dispatch('apolloQuery', {
+          queryName: 'UPDATE_PRODUCT',
+          queryType: 'mutation',
+          data: data,
+        });
       } else {
         const addedProduct = await this.$store.dispatch('apolloQuery', {
           queryName: 'ADD_PRODUCT',
