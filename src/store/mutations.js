@@ -8,7 +8,8 @@ export default {
     const desserts = [];
 
     const restaurantInfo = {
-      name: info.restaurant[0].description,
+      id: info.restaurant[0].id,
+      name: info.restaurant[0].name,
       photos: info.restaurant[0].photos,
     };
 
@@ -49,7 +50,6 @@ export default {
     });
 
     state.tables = tables.slice(0, 3);
-
     state.userRefreshed = false;
   },
   ACTIVE_CONNECTION_DATA(state, info) {
