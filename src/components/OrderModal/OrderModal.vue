@@ -1,33 +1,34 @@
 <script>
-  export default {
-    name: 'ordermodal',
-    props: {
-      order: Object,
-      action: String,
-      toggleModal: Function,
+export default {
+  name: 'ordermodal',
+  props: {
+    order: Object,
+    toggleModal: Function,
+  },
+  data: function() {
+    return {
+      showModal: false,
+    };
+  },
+  mounted() {
+    console.log(this.order);
+    this.showModal = true;
+  },
+  methods: {
+    updateProductStatus: async function(status, item) {
+      console.log('IMPROTANT >>>>', item);
+      await this.$store.dispatch('apolloQuery', {
+        queryType: 'mutation',
+        queryName: 'UPDATE_PRODUCT_STATUS',
+        data: {
+          id: item.id,
+          orderId: this.order.id,
+          status: status,
+        },
+      });
     },
-    data: function () {
-      return {
-        showModal: false,
-      };
-    },
-    mounted() {
-      this.showModal = true;
-    },
-    methods: {
-      updateProductStatus: async function (status, item) {
-
-        await this.$store.dispatch('apolloQuery', {
-          queryType: 'mutation',
-          queryName: 'UPDATE_PRODUCT_STATUS',
-          data: {
-            id: item.id,
-            status: status,
-          }
-        });
-      },
-    },
-  };
+  },
+};
 </script>
 
 <template>
@@ -53,9 +54,9 @@
                 </div>
               </div>
               <div class="order-item-right">
-                <a @click="updateProductStatus('IN PROGRESS', item)" class="btn btn-markstatus" href="#">
+                <a @click="updateProductStatus('IN_PROGRESS', item)" class="btn btn-markstatus" href="#">
                   <i class="material-icons">outlined_flag</i>in-progress</a>
-                <a @click="updateProductStatus('DONE', item)" class="btn btn-markstatus" href="#">
+                <a @click="updateProductStatus('SERVED', item)" class="btn btn-markstatus" href="#">
                   <i class="material-icons">check</i>completed</a>
               </div>
             </div>
@@ -68,3 +69,4 @@
 </template>
 
 <style src="./OrderModal.css" scoped>
+

@@ -184,11 +184,11 @@ const UPDATE_PRODUCT_STATUS = function(product) {
   mutation {
     updateOrderProduct(
       id: ${Number(product.id)}
+      orderId: ${Number(product.orderId)}
       status: "${product.status}"
     ) {
-      activeCode {
-        code
-      }
+      id
+      status
     }
   }  
   `;
@@ -210,6 +210,8 @@ const ACTIVE_CONNECTION_DATA = function() {
         status
         createdAt
         products {
+          status
+          id
           product {
             name
             price

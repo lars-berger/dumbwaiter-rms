@@ -46,7 +46,7 @@ export default {
 
 <template>
   <div class="Dashboard">
-    <OrderModal v-if="openModal" v-bind="{toggleModal}" :order="orders[modalOrder]" :action="openModal" />
+    <OrderModal v-if="openModal" v-bind="{toggleModal}" :order="orders[modalOrder]"  />
     <SideNav page="orders" />
 
     <div class="dash-container">
