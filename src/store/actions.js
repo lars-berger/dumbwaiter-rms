@@ -24,7 +24,6 @@ export default {
         `,
       });
     }
-    console.log('>> response from query', response);
     return await response.data;
   },
 };

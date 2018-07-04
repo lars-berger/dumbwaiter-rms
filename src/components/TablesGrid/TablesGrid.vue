@@ -8,6 +8,7 @@ export default {
   data: function() {
     return {
       resizing: null,
+      beforeResize: {},
       tables: this.$store.state.tables,
     };
   },
@@ -29,7 +30,25 @@ export default {
       this.tables = this.$store.state.tables;
     },
     startResizing: function(id) {
-      this.resizing = id;
+      const tableToResize = document.getElementById(id);
+      const parent = document.getElementById('tables-container');
+
+      const parentHeight = Number(parent.clientHeight);
+      const parentWidth = Number(parent.clientWidth);
+
+      const topToPixels = (tableToResize.style.top.slice(0, -1) * parentHeight) / 100;
+      const leftToPixels = (tableToResize.style.left.slice(0, -1) * parentHeight) / 100;
+
+      this.beforeResize = {
+        h: tableToResize.clientHeight,
+        w: tableToResize.clientWidth,
+        y: topToPixels,
+        x: leftToPixels,
+      };
+
+      this.$nextTick(() => {
+        this.resizing = id;
+      });
     },
     stopResizing: async function() {
       const child = document.getElementById('resizable');
@@ -53,14 +72,13 @@ export default {
         4
       );
 
-      console.log('what im sending', height, width, positionTop, positionLeft);
       await this.$store.dispatch('apolloQuery', {
         queryType: 'mutation',
         queryName: 'UPDATE_TABLE',
         data: {
           id: this.resizing,
-          positionX: positionLeft - width,
-          positionY: positionTop - height,
+          positionX: positionLeft,
+          positionY: positionTop,
           width: width,
           height: height,
         },
@@ -69,6 +87,7 @@ export default {
         queryType: 'query',
         queryName: 'GET_RESTAURANT_DATA',
       });
+      this.tables = this.$store.state.tables;
       this.resizing = null;
     },
   },
@@ -90,8 +109,10 @@ window.onclick = event => {
   <div id="tables-container">
 
 
-    <div @click="showDropdown(`myDropdown${index}`)" v-for="(table, index) in tables" v-if="table.id !== resizing" :key="index" :style="{top: table.positionY + '%', left: table.positionX + '%', width: table.width + '%', height: table.height + '%' }" class="table dropdown dropbtn">
-      <button @click="startResizing(table.id)" class="resize-icon">resize</button>
+    <div @click="showDropdown(`myDropdown${index}`)" :id="table.id" v-for="(table, index) in tables" v-if="table.id !== resizing" :key="index" :style="{top: table.positionY + '%', left: table.positionX + '%', width: table.width + '%', height: table.height + '%' }" class="table dropdown dropbtn">
+      <button @click="startResizing(table.id)" class="resize-icon start"><i class="material-icons">
+zoom_out_map
+</i></button>
       <p class="table-code">{{table.activeCode}}</p>
       
       <div :id="`myDropdown${index}`" v-if="!table.activeCode" class="dropdown-content">
@@ -101,11 +122,10 @@ window.onclick = event => {
     </div>
 
 
-    <vue-draggable-resizable id="resizable" v-for="(table, index) in tables" v-if="table.id === resizing" :key="index" class="table-resizing" :parent="true"
+    <vue-draggable-resizable id="resizable" v-for="(table, index) in tables" v-if="table.id === resizing" :key="index" class="table-resizing" :w="beforeResize.w" :h="beforeResize.h" :x="beforeResize.x" :y="beforeResize.y" :parent="true"
       :grid="[25,25]">
-      <button @click="stopResizing" class="stop-resizing">done</button>
+      <button @click="stopResizing" class="resize-icon stop"><i class="material-icons">check</i></button>
             <p class="table-code">{{table.activeCode}}</p>
-
     </vue-draggable-resizable>
 
 

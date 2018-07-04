@@ -96,13 +96,16 @@
   justify-content: space-between;
 }
 
-.order-item-left {
+.order-item-left, .order-item-right {
   display: flex;
 }
 
 .btn-markstatus {
   margin-left: 1rem;
-  padding: 0.4rem;
+  /* padding: 0.2rem; */
+  height: 1.3rem;
   font-size: 0.8rem;
   background-color: #1b537a;
+  display: flex;
+  align-items: center;
 }
