@@ -1,7 +1,7 @@
 #tables-container {
   position: relative;
   min-height: 80vh;
-  width: 80vh;
+  min-width: 80vh;
   background-color: white;
   border: 1.5px solid rgb(187, 187, 187);
 }
@@ -27,6 +27,10 @@
 }
 
 .table-code {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 35%;
   text-align: center;
   font-size: 2rem;
 }
