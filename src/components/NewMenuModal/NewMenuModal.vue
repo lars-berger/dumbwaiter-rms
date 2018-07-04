@@ -26,13 +26,19 @@ export default {
   },
   methods: {
     async handleSubmit() {
-      console.log('lars smells');
       const data = {
         name: this.foodItem.name,
         description: this.foodItem.description,
         price: Number(this.foodItem.price),
       };
-      if (this.editInfo) {
+      if (this.item) {
+        data.id = this.item.id;
+        const editedProduct = await this.$store.dispatch('apolloQuery', {
+          queryName: 'UPDATE_PRODUCT',
+          queryType: 'mutation',
+          data: data,
+        });
+
         console.log('send update through apollo');
       } else {
         const addedProduct = await this.$store.dispatch('apolloQuery', {

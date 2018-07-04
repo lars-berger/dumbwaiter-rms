@@ -91,6 +91,20 @@ const ADD_PRODUCT = function(product) {
   }
   `;
 };
+const UPDATE_PRODUCT = function(product) {
+  return `
+  mutation {
+    updateProduct(
+      id: ${product.id}
+      name: "${product.name}"
+      description: "${product.description}"
+      price: ${parseFloat(product.price)}
+    ) {
+      id
+    }
+  }
+  `;
+};
 
 const ADD_CATEGORY_TO_PRODUCT = function(product) {
   return `
@@ -154,7 +168,7 @@ const CONNECT_TABLE = function(id) {
         code
       }
     }
-  }  
+  }
   `;
 };
 
@@ -168,4 +182,5 @@ export {
   ADD_TABLE,
   DELETE_TABLE,
   CONNECT_TABLE,
+  UPDATE_PRODUCT,
 };
