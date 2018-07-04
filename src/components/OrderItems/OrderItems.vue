@@ -11,7 +11,7 @@
       <hr class="order-header-underline">
 
 <div v-if="complete">
-  
+
 </div>
       <div v-else class="order-buttons">
         <a @click="toggleModal('cooking')" href="#"><i class="material-icons">outlined_flag</i>COOKING</a>
@@ -28,7 +28,7 @@
           <p v-if="item.extraInfo">{{item.extraInfo}}</p>
         </div>
       </div>
-
+</div>
 
 
     </div>
@@ -48,8 +48,7 @@ export default {
     };
   },
   methods: {
-
     formatTimestamp(timestamp) {},
-
+  },
 };
 </script>
