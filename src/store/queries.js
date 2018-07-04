@@ -128,7 +128,7 @@ const ADD_TABLE = function(table) {
   return `
   mutation {
     addTable(
-      name: "fdsafdsa"
+      name: "${table.number}"
       restaurantId: "1"
       width: 20
       height: 20
@@ -171,6 +171,21 @@ const CONNECT_TABLE = function(id) {
   return `
   mutation {
     generateTableCode(id: "${id}") {
+      activeCode {
+        code
+      }
+    }
+  }  
+  `;
+};
+
+const UPDATE_PRODUCT_STATUS = function(product) {
+  return `
+  mutation {
+    updateOrderProduct(
+      id: ${Number(product.id)}
+      status: "${product.status}"
+    ) {
       activeCode {
         code
       }
@@ -236,5 +251,6 @@ export {
   UPDATE_TABLE,
   DELETE_TABLE,
   CONNECT_TABLE,
+  UPDATE_PRODUCT_STATUS,
   ACTIVE_CONNECTION_DATA,
 };

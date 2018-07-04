@@ -10,7 +10,7 @@ export default {
   data: function() {
     return {
       foodItem: {
-        header: this.editInfo ? 'Edit' : 'New',
+        header: this.editInfo ? 'EDIT' : 'NEW',
         name: this.editInfo ? this.editInfo.name : '',
         description: this.editInfo ? this.editInfo.description : '',
         price: this.editInfo ? this.editInfo.price : '',
@@ -23,6 +23,9 @@ export default {
   },
   mounted() {
     this.showModal = true;
+  },
+  beforeDestroy() {
+    this.reset();
   },
   methods: {
     async handleSubmit() {
@@ -70,7 +73,7 @@ export default {
     <div id="modal" :class="{'modal-visible': showModal}">
       <div class="modal-container">
         <i @click="toggleModal" class="material-icons close-modal">close</i>
-        <h2>{{foodItem.header}} {{category}} ITEM</h2>
+        <h2>{{foodItem.header}} {{category.toUpperCase()}} ITEM</h2>
         <hr>
         <form @submit.prevent="handleSubmit" class="modal-form">
 

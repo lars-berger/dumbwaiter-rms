@@ -17,7 +17,7 @@ export default {
       orders: [],
       completedOrders: [],
       openModal: null,
-      modalOrder: 0,
+      modalOrder: null,
     };
   },
   async beforeCreate() {
