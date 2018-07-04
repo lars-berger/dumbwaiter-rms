@@ -12,7 +12,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.order);
     this.showModal = true;
   },
   methods: {
@@ -46,8 +45,8 @@ export default {
               </div>
               </div>
               <div class="order-item-right">
-                <a class="btn btn-markstatus" href="#">in-progress</a>
-                <a class="btn btn-markstatus" href="#">completed</a>
+                <a class="btn btn-markstatus" href="#"><i class="material-icons">outlined_flag</i>in-progress</a>
+                <a class="btn btn-markstatus" href="#"><i class="material-icons">check</i>completed</a>
               </div>
             </div>
           </div>

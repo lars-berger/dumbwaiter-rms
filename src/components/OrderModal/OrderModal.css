@@ -1,6 +1,6 @@
 
 /* ********************************************************* */
-/*                  NEW MENU ITEM MODAL                      */
+/*                  ORDER DETAILS MODAL                      */
 /* ********************************************************* */
 
 #mask {
@@ -55,16 +55,6 @@
   margin-bottom: 1.3rem;
 }
 
-.form-inline {
-  display: flex;
-}
-
-.form-inline * {
-  flex-basis: 50%;
-  width: 82%;
-  /* flex-grow: 1; */
-}
-
 .form-field {
   margin-bottom: 1.5em;
 }
@@ -96,13 +86,28 @@
   justify-content: space-between;
 }
 
-.order-item-left {
+.order-item-left, .order-item-right {
   display: flex;
+  flex-basis: 50%;
+  margin-bottom: 0.5rem;
+}
+
+.order-item-img {
+  height: 2.7rem;
+  width: 2.7rem;
 }
 
 .btn-markstatus {
   margin-left: 1rem;
-  padding: 0.4rem;
+  padding: 0.3rem 0.5rem;
+  height: 1.2rem;
   font-size: 0.8rem;
   background-color: #1b537a;
+  display: flex;
+  align-items: center;
+}
+
+.btn-markstatus i {
+  font-size: 1.1rem;
+  margin-right: 0.2rem;
 }

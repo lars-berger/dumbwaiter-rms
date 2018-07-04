@@ -23,14 +23,11 @@ export default {
           number: this.tables.length + 1,
         },
       });
-    },
-    deleteTable: async function(id) {
-      console.log(id);
       await this.$store.dispatch('apolloQuery', {
-        queryType: 'mutation',
-        queryName: 'DELETE_TABLE',
-        data: id,
+        queryType: 'query',
+        queryName: 'GET_RESTAURANT_DATA',
       });
+      this.tables = this.$store.state.tables;
     },
   },
 };

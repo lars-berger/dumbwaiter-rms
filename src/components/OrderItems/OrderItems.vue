@@ -1,6 +1,6 @@
 <template>
   <div class="orders-container">
-    <div @click="toggleModal('complete')" v-for="order in orders" :key="order.id" class="order">
+    <div @click="toggleModal(index)" v-for="(order, index) in orders" :key="order.id" class="order">
       <div class="order-header">
         <h4 class="order-header-orderid">Order #{{order.id}}</h4>
         <div class="order-header-timestamp">

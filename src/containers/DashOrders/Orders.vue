@@ -29,6 +29,7 @@ export default {
       queryName: 'ACTIVE_CONNECTION_DATA',
     });
     this.orders = this.$store.state.activeOrders;
+    // this.completedOrders = this.$store.state.completedOrders;
     // setInterval(() => {
     //   this.$store.dispatch('apolloQuery', {
     //     queryType: 'query',
@@ -38,8 +39,9 @@ export default {
     // });
   },
   methods: {
-    toggleModal: function(action) {
-      this.openModal = this.openModal ? null : action;
+    toggleModal: function(index) {
+      this.modalOrder = index;
+      this.openModal = !this.openModal;
     },
   },
 };

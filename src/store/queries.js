@@ -13,6 +13,10 @@ const GET_RESTAURANT_DATA = function(id = 1) {
       tables {
         id
         name
+        height
+        width
+        positionX
+        positionY
         activeCode {
           code
         }
@@ -123,8 +127,10 @@ const ADD_TABLE = function(table) {
   return `
   mutation {
     addTable(
-      name: "${table.number}"
+      name: "fdsafdsa"
       restaurantId: "1"
+      width: 20
+      height: 20
     ) {
       id
     }
@@ -135,12 +141,12 @@ const ADD_TABLE = function(table) {
 const UPDATE_TABLE = function(table) {
   return `
   mutation {
-    deleteTable(
+    updateTable(
       id: ${Number(table.id)}
-      positionX: ${table.x}
-      positionY: ${table.y}
-      width: ${table.width}
-      height: ${table.height}
+      positionX: ${parseFloat(table.positionX)}
+      positionY: ${parseFloat(table.positionY)}
+      width: ${parseFloat(table.width)}
+      height: ${parseFloat(table.height)}
     ) {
       id
     }
@@ -204,6 +210,10 @@ const ACTIVE_CONNECTION_DATA = function() {
       table {
         id
         name
+        height
+        width
+        positionX
+        positionY
         activeCode {
           code
         }
@@ -221,6 +231,7 @@ export {
   ADD_CATEGORY_TO_PRODUCT,
   DELETE_PRODUCT,
   ADD_TABLE,
+  UPDATE_TABLE,
   DELETE_TABLE,
   CONNECT_TABLE,
   UPDATE_PRODUCT,

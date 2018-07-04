@@ -12,6 +12,8 @@ export default {
       photos: info.restaurant[0].photos,
     };
 
+    // console.log('null?', info.restaurant[0].products[0]);
+
     info.restaurant[0].products.map(product => {
       product.categories.map(category => {
         if (category.name == 'drinks') {
@@ -39,9 +41,10 @@ export default {
         id: table.id,
         name: table.name,
         activeCode: code,
-        width: '400px',
-        height: '400px',
-        resizable: true,
+        width: table.width,
+        height: table.height,
+        positionX: table.positionX,
+        positionY: table.positionY,
       });
     });
 
