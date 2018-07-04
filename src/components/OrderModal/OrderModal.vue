@@ -33,18 +33,23 @@ export default {
         <form @submit.prevent="handleSubmit" class="modal-form">
           <div class="modal-inputs-container">
 
-            <div v-for="(item, index) in order.orderItems" :key="index" class="order-item">
-              <img class="order-item-img" src="@/assets/images/burger.png" alt="" srcset="">
-              <div class="order-item-text">
-                <p class="order-item-name">{{item.quantity}} x {{item.name}}</p>
-                <p v-if="item.extraInfo">{{item.extraInfo}}</p>
-              </div>
+            <div class="btn-markcomplete">
+            <a class="btn" href="#">MARK ENTIRE ORDER AS COMPLETE</a>
             </div>
 
-          <div class="form-buttons-wrapper">
-            <p id="addnew-error"></p>
-            <input type="submit" class="btn addnew-submit" value="SAVE CHANGES" />
-          </div>
+            <div v-for="(item, index) in order.products" :key="index" class="order-item-container">
+              <div class="order-item-left">
+              <img class="order-item-img" :src="item.product.photos[0].url">
+              <div class="order-item-text">
+                <p class="order-item-name">{{item.product.name}}</p>
+                <p v-if="item.extraInfo">{{item.extraInfo}}</p>
+              </div>
+              </div>
+              <div class="order-item-right">
+                <a class="btn btn-markstatus" href="#">in-progress</a>
+                <a class="btn btn-markstatus" href="#">completed</a>
+              </div>
+            </div>
           </div>
         </form>
       </div>

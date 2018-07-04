@@ -1,10 +1,12 @@
 export default {
-  user: null,
-  token: null,
   userRefreshed: true,
   restaurantInfo: {},
   menuItems: {},
+  activeOrders: [],
+  completedOrders: [],
   tables: [],
+  groupedOrders: [],
+
   orders: [
     {
       orderId: '112',

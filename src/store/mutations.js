@@ -34,9 +34,7 @@ export default {
     const tables = [];
 
     info.restaurant[0].tables.map(table => {
-      const code = table.activeCode[0]
-        ? table.activeCode[0].code
-        : null;
+      const code = table.activeCode[0] ? table.activeCode[0].code : null;
       tables.push({
         id: table.id,
         name: table.name,
@@ -50,5 +48,15 @@ export default {
     state.tables = tables.slice(0, 3);
 
     state.userRefreshed = false;
+  },
+  ACTIVE_CONNECTION_DATA(state, info) {
+    state.groupedOrders = info.connection;
+
+    const activeOrders = [];
+    info.connection.map(connection => {
+      connection.orders.map(order => activeOrders.push(order));
+    });
+    console.log(activeOrders);
+    state.activeOrders = activeOrders;
   },
 };

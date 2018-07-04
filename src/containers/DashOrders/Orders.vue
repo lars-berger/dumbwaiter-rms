@@ -14,11 +14,28 @@ export default {
   },
   data: function() {
     return {
+
       orders: this.$store.state.orders,
       completedOrders: this.$store.state.completedOrders,
+
       openModal: null,
       modalOrder: 0,
     };
+  },
+
+  async beforeCreate() {
+    await this.$store.dispatch('apolloQuery', {
+      queryType: 'query',
+      queryName: 'ACTIVE_CONNECTION_DATA',
+    });
+    this.orders = this.$store.state.activeOrders;
+    // setInterval(() => {
+    //   this.$store.dispatch('apolloQuery', {
+    //     queryType: 'query',
+    //     queryName: 'ACTIVE_CONNECTION_DATA',
+    //   });
+    //   this.orders = this.$store.state.activeOrders;
+    // });
   },
   methods: {
     toggleModal: function(action) {
