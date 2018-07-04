@@ -10,6 +10,20 @@ export default {
       resizing: null,
       beforeResize: {},
       tables: this.$store.state.tables,
+      displayDropdown: false,
+    };
+  },
+  mounted() {
+    document.onclick = event => {
+      if (!event.target.matches('.dropdown')) {
+        var dropdowns = document.getElementsByClassName('dropdown-content');
+        for (let i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
     };
   },
   methods: {
@@ -90,18 +104,10 @@ export default {
       this.tables = this.$store.state.tables;
       this.resizing = null;
     },
+    handleTableClick: function(index) {
+      // if ()
+    },
   },
-};
-window.onclick = event => {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName('dropdown-content');
-    for (let i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
 };
 </script>
 
@@ -109,11 +115,12 @@ window.onclick = event => {
   <div id="tables-container">
 
 
-    <div @click="showDropdown(`myDropdown${index}`)" :id="table.id" v-for="(table, index) in tables" v-if="table.id !== resizing" :key="index" :style="{top: table.positionY + '%', left: table.positionX + '%', width: table.width + '%', height: table.height + '%' }" class="table dropdown dropbtn">
-      <button @click="startResizing(table.id)" class="resize-icon start"><i class="material-icons">
-zoom_out_map
-</i></button>
+    <div @click="showDropdown(`myDropdown${index}`)" :id="table.id" v-for="(table, index) in tables" v-if="table.id !== resizing" :key="index" :style="{top: table.positionY + '%', left: table.positionX + '%', width: table.width + '%', height: table.height + '%' }" class="table dropdown">
+
+      <button @click="startResizing(table.id)" class="resize-icon start"><i class="material-icons">zoom_out_map</i></button>
+
       <p class="table-code">{{table.activeCode}}</p>
+        
       
       <div :id="`myDropdown${index}`" v-if="!table.activeCode" class="dropdown-content">
         <a @click="getToken(table.id)">GET KEY</a>
@@ -122,7 +129,7 @@ zoom_out_map
     </div>
 
 
-    <vue-draggable-resizable id="resizable" v-for="(table, index) in tables" v-if="table.id === resizing" :key="index" class="table-resizing" :w="beforeResize.w" :h="beforeResize.h" :x="beforeResize.x" :y="beforeResize.y" :parent="true"
+    <vue-draggable-resizable id="resizable" v-for="(table, index) in tables" v-if="table.id === resizing" :key="index" :w="beforeResize.w" :h="beforeResize.h" :x="beforeResize.x" :y="beforeResize.y" :parent="true"
       :grid="[25,25]">
       <button @click="stopResizing" class="resize-icon stop"><i class="material-icons">check</i></button>
             <p class="table-code">{{table.activeCode}}</p>

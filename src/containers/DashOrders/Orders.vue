@@ -36,8 +36,9 @@ export default {
     // });
   },
   methods: {
-    toggleModal: function(action) {
-      this.openModal = this.openModal ? null : action;
+    toggleModal: function(index) {
+      this.modalOrder = index;
+      this.openModal = !this.openModal;
     },
   },
 };

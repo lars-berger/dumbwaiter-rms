@@ -29,18 +29,6 @@ export default {
       });
       this.tables = this.$store.state.tables;
     },
-    deleteTable: async function(id) {
-      await this.$store.dispatch('apolloQuery', {
-        queryType: 'mutation',
-        queryName: 'DELETE_TABLE',
-        data: id,
-      });
-      await this.$store.dispatch('apolloQuery', {
-        queryType: 'query',
-        queryName: 'GET_RESTAURANT_DATA',
-      });
-      this.tables = this.$store.state.tables;
-    },
   },
 };
 </script>
