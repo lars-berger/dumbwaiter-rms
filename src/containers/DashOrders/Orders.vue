@@ -14,15 +14,12 @@ export default {
   },
   data: function() {
     return {
-
-      orders: this.$store.state.orders,
-      completedOrders: this.$store.state.completedOrders,
-
+      orders: [],
+      completedOrders: [],
       openModal: null,
       modalOrder: null,
     };
   },
-
   async beforeCreate() {
     await this.$store.dispatch('apolloQuery', {
       queryType: 'query',
@@ -64,10 +61,11 @@ export default {
         <OrderItems :orders="orders" :toggleModal="toggleModal" v-else />
 
         <h1 class="orders-h1">COMPLETED ORDERS</h1>
+
         <div class="completed-orders-empty-state" v-if="completedOrders.length === 0">
           <h3 class="empty-state-header">No orders have been completed</h3>
         </div>
-        <OrderItems :orders="completedOrders" complete="true" v-else />
+        <OrderItems :orders="completedOrders" v-else />
 
       </div>
     </div>
