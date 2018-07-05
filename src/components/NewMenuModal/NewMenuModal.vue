@@ -117,7 +117,7 @@ export default {
         </form>
       </div>
     </div>
-    <div @click="toggleModal; reset()" :class="{'modal-visible': showModal}" id="mask"></div>
+    <div @click="toggleModal(); reset()" :class="{'modal-visible': showModal}" id="mask"></div>
   </div>
 </template>
 

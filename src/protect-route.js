@@ -9,6 +9,22 @@ export default async function(to, from, next) {
       queryType: 'query',
       queryName: 'GET_RESTAURANT_DATA',
     });
+    console.log(store.state.restaurantInfo.id);
+    await store.dispatch('apolloSubscription', {
+      queryName: 'ORDERS_SUBSCRIPTION',
+      data: { id: store.state.restaurantInfo.id },
+    });
+
+    await store.dispatch('apolloSubscription', {
+      queryName: 'CONNECTIONS_SUBSCRIPTION',
+      data: { id: store.state.restaurantInfo.id },
+    });
+
+    await store.dispatch('apolloSubscription', {
+      queryName: 'WAITER_CALLS_SUBSCRIPTION',
+      data: { id: store.state.restaurantInfo.id },
+    });
+
     next(to);
   }
   next();

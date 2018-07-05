@@ -1,12 +1,29 @@
-<template functional>
+<script>
+export default {
+  name: 'TopNav',
+  props: {},
+  components: {},
+  data: function() {
+    return {
+      restaurantName: this.$store.state.restaurantInfo.name,
+    };
+  },
+  mounted() {},
+  methods: {},
+};
+</script>
+<template>
   <div class="navbar">
     <ul class="navbar-right">
+      <li>
+        <img src="/img/temp-logo2.cf3332a2.png" class="logo-img">
+      </li>
       <li>
         <a href="#">
           <i class="material-icons">notifications</i>
         </a>
       </li>
-      <li class="navbar-name">Bob's Burgers</li>
+      <li class="navbar-name">{{restaurantName}}</li>
       <li>
         <a href="#">
           <i class="material-icons dropdown-icon">arrow_drop_down</i>

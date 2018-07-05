@@ -9,10 +9,15 @@
         </div>
       </div>
       <hr class="order-header-underline">
-      
-      <div class="order-buttons">
-        <span class="order-table"></span>
-        <a @click="markComplete" href="#"><i class="material-icons">check</i>COMPLETE</a>
+
+<div v-if="complete">
+
+</div>
+      <div v-else class="order-buttons">
+        <a @click="toggleModal('cooking')" href="#"><i class="material-icons">outlined_flag</i>COOKING</a>
+        <a @click="toggleModal('countdown')" href="#"><i class="material-icons">update</i>COUNTDOWN</a>
+        <a @click="toggleModal('complete')" href="#"><i class="material-icons">check</i>COMPLETE</a>
+
       </div>
 
       <div class="order-items-container">
@@ -24,7 +29,9 @@
           <p v-if="item.extraInfo">{{item.extraInfo}}</p>
         </div>
       </div>
-      </div>
+</div>
+
+
     </div>
   </div>
 </template>
@@ -34,6 +41,7 @@ export default {
   props: {
     orders: Array,
     toggleModal: Function,
+    complete: Boolean,
   },
   data: function() {
     return {

@@ -1,9 +1,10 @@
 import gql from 'graphql-tag';
 import graphqlClient from '../graphql';
 import * as QUERY from './queries';
+import * as SUBSCRIPTION from './subscriptions';
 
 export default {
-  async apolloQuery({ commit }, args) {
+  apolloQuery: async ({ commit }, args) => {
     const query = QUERY[args.queryName](args.data);
 
     let response;
@@ -25,5 +26,22 @@ export default {
       });
     }
     return await response.data;
+  },
+  apolloSubscription: async ({ commit }, args) => {
+    const subscription = SUBSCRIPTION[args.queryName](args.data);
+
+    return await graphqlClient
+      .subscribe({
+        query: gql`
+          ${subscription}
+        `,
+        variables: {},
+      })
+      .subscribe({
+        next(data) {
+          console.log('Subscription response data');
+          console.log(data);
+        },
+      });
   },
 };
