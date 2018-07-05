@@ -123,21 +123,6 @@ const ADD_CATEGORY_TO_PRODUCT = function(product) {
   `;
 };
 
-const UPDATE_PRODUCT = function(product) {
-  return `
-  mutation {
-    updateProduct(
-      id: ${product.id}
-      name: "${product.name}"
-      description: "${product.description}"
-      price: ${parseFloat(product.price)}
-    ) {
-      id
-    }
-  }
-  `;
-};
-
 const ADD_TABLE = function(table) {
   return `
   mutation {
@@ -268,6 +253,5 @@ export {
   DELETE_TABLE,
   CONNECT_TABLE,
   UPDATE_PRODUCT_STATUS,
-  UPDATE_PRODUCT,
   ACTIVE_CONNECTION_DATA,
 };
