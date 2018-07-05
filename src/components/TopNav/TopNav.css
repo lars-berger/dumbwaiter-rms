@@ -29,13 +29,14 @@
 
 .navbar li:first-child {
   position: absolute;
-  top: 3.5%;
+  top: 0;
   left: 47.5%;
   transform: translate(-50%, -50%);
 }
 
 .navbar li:first-child img {
-  height: 20px;
+  height: 2rem;
+  margin-top: 4rem;
 }
 
 .navbar-name {

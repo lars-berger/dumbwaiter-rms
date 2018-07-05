@@ -16,7 +16,7 @@ export default {
   <div class="navbar">
     <ul class="navbar-right">
       <li>
-        <img src="@/assets/images/temp-logo4.png" class="logo-img">
+        <img src="@/assets/images/temp-logo4.svg" class="logo-img">
       </li>
       <li>
         <a href="#">

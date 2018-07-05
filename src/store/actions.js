@@ -26,22 +26,6 @@ export default {
       });
     }
 
-    function addElement() {
-      // create a new div element
-      var newDiv = document.createElement('div');
-      newDiv.setAttribute('class', 'notification');
-      newDiv.innerHTML = `<i class="material-icons">error_outline</i>
-      <span>&nbsp;&nbsp;&nbsp;New order from Bob Bobson</span>`;
-      // and give it some content
-      // var newContent = document.createTextNode('Hi there and greetings!');
-      // add the text node to the newly created div
-      // newDiv.appendChild(newContent);
-
-      // add the newly created element and its content into the DOM
-      // var currentDiv = document.getElementById('div1');
-      document.body.appendChild(newDiv);
-    }
-
     return await response.data;
   },
   apolloSubscription: async ({ commit }, args) => {
@@ -56,26 +40,41 @@ export default {
       })
       .subscribe({
         next(data) {
-          console.log('Subscription response data');
+          console.log('>>>>>>', data);
+          let customer;
+          let notification;
+          if (data.data.onCustomerCallsWaiter) {
+            customer = data.data.onCustomerCallsWaiter.userName
+              ? data.data.onCustomerCallsWaiter.userName
+              : '';
+            notification = customer + ' is calling for a waiter';
+          }
+          if (data.data.onCustomerConnection) {
+            customer = data.data.onCustomerConnection.userName
+              ? `${data.data.onCustomerConnection.userName}`
+              : '';
+            notification = customer + ' is connected to a table';
+          }
+          if (data.data.onCustomerOrder) {
+            customer = data.data.onCustomerOrder.userName
+              ? ` from ${data.data.onCustomerOrder.userName}`
+              : '';
+            notification = 'New order' + customer;
+          }
 
           addElement();
-
           function addElement() {
-            // create a new div element
             var newDiv = document.createElement('div');
             newDiv.setAttribute('class', 'notification');
-            newDiv.innerHTML = `<i class="material-icons">error_outline</i>
-            <span>&nbsp;&nbsp;&nbsp;New order from Bob Bobson</span>`;
-            // and give it some content
-            // var newContent = document.createTextNode('Hi there and greetings!');
-            // add the text node to the newly created div
-            // newDiv.appendChild(newContent);
 
-            // add the newly created element and its content into the DOM
-            // var currentDiv = document.getElementById('div1');
+            newDiv.innerHTML = `<i class="material-icons">error_outline</i>
+            <span>&nbsp;&nbsp;&nbsp;${notification}</span>`;
             document.body.appendChild(newDiv);
+
+            setTimeout(() => {
+              document.body.removeChild(newDiv);
+            }, 7000);
           }
-          console.log(data);
         },
       });
   },

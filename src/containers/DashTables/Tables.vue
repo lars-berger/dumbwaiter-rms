@@ -14,22 +14,7 @@ export default {
       tables: this.$store.state.tables,
     };
   },
-  methods: {
-    addTable: async function() {
-      await this.$store.dispatch('apolloQuery', {
-        queryType: 'mutation',
-        queryName: 'ADD_TABLE',
-        data: {
-          number: this.tables.length + 1,
-        },
-      });
-      await this.$store.dispatch('apolloQuery', {
-        queryType: 'query',
-        queryName: 'GET_RESTAURANT_DATA',
-      });
-      this.tables = this.$store.state.tables;
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -44,13 +29,8 @@ export default {
         <h1 class="orders-h1">TABLES</h1>
 
         <div class="divider" />
-        <div class="flex-container">
           <TablesGrid />
-          <div class="right-container">
-            <button @click="addTable" class="btn btn-addtable">ADD A TABLE</button>
-          </div>
 
-        </div>
 
 
 

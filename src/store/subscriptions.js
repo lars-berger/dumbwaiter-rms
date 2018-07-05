@@ -4,6 +4,7 @@ const ORDERS_SUBSCRIPTION = function({ id = 1 }) {
     onCustomerOrder(restaurantId: ${id}) {
       text
       userId
+      userName
       connectionId
       orderId
     }
@@ -16,6 +17,7 @@ const CONNECTIONS_SUBSCRIPTION = function({ id = 1 }) {
     onCustomerConnection(restaurantId: ${id}) {
       text
       userId
+      userName
       connectionId
     }
   }

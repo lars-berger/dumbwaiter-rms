@@ -119,11 +119,26 @@ export default {
         this.openModal = !this.openModal;
       }
     },
+    addTable: async function() {
+      await this.$store.dispatch('apolloQuery', {
+        queryType: 'mutation',
+        queryName: 'ADD_TABLE',
+        data: {
+          number: this.tables.length + 1,
+        },
+      });
+      await this.$store.dispatch('apolloQuery', {
+        queryType: 'query',
+        queryName: 'GET_RESTAURANT_DATA',
+      });
+      this.tables = this.$store.state.tables;
+    },
   },
 };
 </script>
 
 <template>
+<div class="flex-container">
   <div id="tables-container">
     <ConnectionModal v-if="openModal" v-bind="{handleTableClick}" :tableData="connections[tableIndexForModal]" />
 
@@ -149,6 +164,10 @@ export default {
 
 
   </div>
+  <div class="right-container">
+            <button @click="addTable" class="btn btn-addtable">ADD A TABLE</button>
+          </div>
+</div>
 </template>
 
 <style src="./TablesGrid.css">
