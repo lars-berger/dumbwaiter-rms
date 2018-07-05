@@ -17,6 +17,11 @@ h2 {
 /*                      ORDERS PAGE                          */
 /* ********************************************************* */
 
+.status-icon {
+  background-color:  #11476e;
+  color: white;
+}
+
 .orders-h1 {
   margin-bottom: 0.8rem;
 }

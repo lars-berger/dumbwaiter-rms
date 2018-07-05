@@ -19,6 +19,7 @@
       <div v-for="(item, index) in order.products" :key="index" class="order-item">
         <img class="order-item-img" :src="item.product.photos[0].url" alt="" srcset="">
         <div class="order-item-text">
+          <span class="status-icon"><i class="material-icons">{{changeStatusIcon(item.product.status)}}</i></span>
           <p class="order-item-name">{{item.product.name}}</p>
           <p v-if="item.extraInfo">{{item.extraInfo}}</p>
         </div>
@@ -40,6 +41,9 @@ export default {
     };
   },
   methods: {
+    changeStatusIcon(status) {
+      // switch(status)
+    },
     markComplete() {
       console.log('mark all items in order as complete');
     },

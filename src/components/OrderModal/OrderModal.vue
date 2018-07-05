@@ -16,7 +16,6 @@ export default {
   },
   methods: {
     updateProductStatus: async function(status, item) {
-      console.log('IMPROTANT >>>>', item);
       await this.$store.dispatch('apolloQuery', {
         queryType: 'mutation',
         queryName: 'UPDATE_PRODUCT_STATUS',
