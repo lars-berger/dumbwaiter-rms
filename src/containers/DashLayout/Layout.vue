@@ -13,9 +13,7 @@ export default {
     return {
       mouseOver: false,
       grid: {
-        squares: Array(40).fill(
-          Array(40).fill('unselected')
-        ),
+        squares: Array(40).fill(Array(40).fill('unselected')),
       },
     };
   },

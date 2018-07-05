@@ -18,11 +18,32 @@
   list-style: none;
   display: flex;
   align-items: center;
+  width: 100%;
+  justify-content: flex-end;
 }
 
 .navbar i {
   color: rgb(80, 80, 80);
   font-size: 1.5rem;
+}
+
+.navbar li:first-child {
+  justify-self: flex-start;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding-left: 1em;
+  font-size: 24px;
+  color: #000;
+  background: #ddd;
+  margin-right: 1em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navbar li:first-child img {
+  height: 20px;
 }
 
 .navbar-name {

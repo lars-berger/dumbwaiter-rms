@@ -12,7 +12,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.order);
     this.showModal = true;
   },
   methods: {

@@ -63,7 +63,7 @@ export default {
 
 <template>
   <div class="Dashboard">
-    <NewMenuModal v-if="openModal" v-bind="{toggleModal, reset}" :editInfo="editInfo" :category="openModal"/>
+    <NewMenuModal v-if="openModal" v-bind="{toggleModal, reset}" :item="editInfo" :category="openModal"/>
     <SideNav page="menu" />
 
     <div class="dash-container">
@@ -103,4 +103,3 @@ export default {
 </template>
 
 <style src="./Menu.css" scoped>
-

@@ -4,17 +4,17 @@ export default {
   props: {
     category: String,
     toggleModal: Function,
-    editInfo: Object,
+    item: Object,
     reset: Function,
   },
   data: function() {
     return {
       foodItem: {
-        header: this.editInfo ? 'Edit' : 'New',
-        name: this.editInfo ? this.editInfo.name : '',
-        description: this.editInfo ? this.editInfo.description : '',
-        price: this.editInfo ? this.editInfo.price : '',
-        submitButton: this.editInfo ? 'update' : 'add',
+        header: this.item ? 'Edit' : 'New',
+        name: this.item ? this.item.name : '',
+        description: this.item ? this.item.description : '',
+        price: this.item ? this.item.price : '',
+        submitButton: this.item ? 'update' : 'add',
       },
       showModal: false,
       priceInputFocused: false,
@@ -31,7 +31,14 @@ export default {
         description: this.foodItem.description,
         price: Number(this.foodItem.price),
       };
-      if (this.editInfo) {
+      if (this.item) {
+        data.id = this.item.id;
+        const editedProduct = await this.$store.dispatch('apolloQuery', {
+          queryName: 'UPDATE_PRODUCT',
+          queryType: 'mutation',
+          data: data,
+        });
+
         console.log('send update through apollo');
       } else {
         const addedProduct = await this.$store.dispatch('apolloQuery', {
@@ -109,7 +116,7 @@ export default {
         </form>
       </div>
     </div>
-    <div @click="toggleModal; reset()" :class="{'modal-visible': showModal}" id="mask"></div>
+    <div @click="toggleModal(); reset()" :class="{'modal-visible': showModal}" id="mask"></div>
   </div>
 </template>
 
