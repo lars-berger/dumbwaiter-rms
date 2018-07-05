@@ -24,6 +24,7 @@
       <div v-for="(item, index) in order.products" :key="index" class="order-item">
         <img class="order-item-img" :src="item.product.photos[0].url" alt="" srcset="">
         <div class="order-item-text">
+          <span class="status-icon"><i class="material-icons">{{changeStatusIcon(item.product.status)}}</i></span>
           <p class="order-item-name">{{item.product.name}}</p>
           <p v-if="item.extraInfo">{{item.extraInfo}}</p>
         </div>
@@ -48,7 +49,41 @@ export default {
     };
   },
   methods: {
-    formatTimestamp(timestamp) {},
+    changeStatusIcon(status) {
+      // switch(status)
+    },
+    markComplete() {
+      console.log('mark all items in order as complete');
+    },
+    formatTimestamp(timestamp) {
+      const date = new Date(timestamp);
+      const difference = {};
+
+      const differenceInMilli = Date.now() - date;
+      if (Math.floor(differenceInMilli / 60 / 1000 < 1)) {
+        return 'now';
+      }
+
+      difference.year = Math.floor(differenceInMilli / 365 / 24 / 60 / 60 / 1000);
+      difference.month = Math.floor(differenceInMilli / 4 / 7 / 24 / 60 / 60 / 1000);
+      difference.week = Math.floor(differenceInMilli / 7 / 24 / 60 / 60 / 1000);
+      difference.day = Math.floor(differenceInMilli / 24 / 60 / 60 / 1000);
+      difference.hour = Math.floor(differenceInMilli / 60 / 60 / 1000);
+      difference.min = Math.floor(differenceInMilli / 60 / 1000);
+      difference.second = Math.floor(differenceInMilli / 1000);
+
+      const keys = Object.keys(difference);
+
+      for (let i = 0; i < keys.length - 1; i++) {
+        if (difference[keys[i]] !== 0) {
+          if (difference[keys[i]] > 1.1) {
+            return `${difference[keys[i]]} ${keys[i]}s ago`;
+          } else {
+            return `${difference[keys[i]]} ${keys[i]} ago`;
+          }
+        }
+      }
+    },
   },
 };
 </script>

@@ -1,16 +1,21 @@
 <script>
 import VueDraggableResizable from 'vue-draggable-resizable';
+import ConnectionModal from '@/components/ConnectionModal/ConnectionModal.vue';
 
 export default {
   components: {
     VueDraggableResizable,
+    ConnectionModal,
   },
   data: function() {
     return {
       resizing: null,
       beforeResize: {},
       tables: this.$store.state.tables,
+      connections: this.$store.state.groupedOrders,
       displayDropdown: false,
+      tableIndexForModal: null,
+      openModal: null,
     };
   },
   mounted() {
@@ -43,7 +48,8 @@ export default {
 
       this.tables = this.$store.state.tables;
     },
-    startResizing: function(id) {
+    startResizing: function(e, id) {
+      e.stopPropagation();
       const tableToResize = document.getElementById(id);
       const parent = document.getElementById('tables-container');
 
@@ -104,8 +110,14 @@ export default {
       this.tables = this.$store.state.tables;
       this.resizing = null;
     },
-    handleTableClick: function(index) {
-      // if ()
+    handleTableClick: function(index, tableId, activeCode) {
+      if (!activeCode) {
+        this.showDropdown(`myDropdown${index}`);
+      } else {
+        const tableIndex = this.connections.findIndex(e => e.table.id === tableId);
+        this.tableIndexForModal = tableIndex;
+        this.openModal = !this.openModal;
+      }
     },
   },
 };
@@ -113,11 +125,11 @@ export default {
 
 <template>
   <div id="tables-container">
+    <ConnectionModal v-if="openModal" v-bind="{handleTableClick}" :tableData="connections[tableIndexForModal]" />
 
+    <div @click="handleTableClick(index, table.id, table.activeCode)" :id="table.id" v-for="(table, index) in tables" v-if="table.id !== resizing" :key="index" :style="{top: table.positionY + '%', left: table.positionX + '%', width: table.width + '%', height: table.height + '%' }" class="table dropdown">
 
-    <div @click="showDropdown(`myDropdown${index}`)" :id="table.id" v-for="(table, index) in tables" v-if="table.id !== resizing" :key="index" :style="{top: table.positionY + '%', left: table.positionX + '%', width: table.width + '%', height: table.height + '%' }" class="table dropdown">
-
-      <button @click="startResizing(table.id)" class="resize-icon start"><i class="material-icons">zoom_out_map</i></button>
+      <button @click="startResizing($event, table.id)" class="resize-icon start"><i class="material-icons">zoom_out_map</i></button>
 
       <p class="table-code">{{table.activeCode}}</p>
         

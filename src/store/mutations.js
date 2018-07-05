@@ -13,8 +13,6 @@ export default {
       photos: info.restaurant[0].photos,
     };
 
-    // console.log('null?', info.restaurant[0].products[0]);
-
     info.restaurant[0].products.map(product => {
       product.categories.map(category => {
         if (category.name == 'drinks') {
@@ -49,7 +47,8 @@ export default {
       });
     });
 
-    state.tables = tables.slice(0, 3);
+    state.tables = tables;
+
     state.userRefreshed = false;
   },
   ACTIVE_CONNECTION_DATA(state, info) {
@@ -59,7 +58,7 @@ export default {
     info.connection.map(connection => {
       connection.orders.map(order => activeOrders.push(order));
     });
-    console.log(activeOrders);
+    console.log('active orders', activeOrders);
     state.activeOrders = activeOrders;
   },
 };

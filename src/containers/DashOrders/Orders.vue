@@ -19,7 +19,7 @@ export default {
       completedOrders: this.$store.state.completedOrders,
 
       openModal: null,
-      modalOrder: 0,
+      modalOrder: null,
     };
   },
 
@@ -49,7 +49,7 @@ export default {
 
 <template>
   <div class="Dashboard">
-    <OrderModal v-if="openModal" v-bind="{toggleModal}" :order="orders[modalOrder]" :action="openModal" />
+    <OrderModal v-if="openModal" v-bind="{toggleModal}" :order="orders[modalOrder]"  />
     <SideNav page="orders" />
 
     <div class="dash-container">

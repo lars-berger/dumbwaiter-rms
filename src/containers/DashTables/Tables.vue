@@ -43,10 +43,11 @@ export default {
       <div class="content">
         <h1 class="orders-h1">TABLES</h1>
 
+        <div class="divider" />
         <div class="flex-container">
           <TablesGrid />
           <div class="right-container">
-            <button @click="addTable" class="btn">ADD A TABLE</button>
+            <button @click="addTable" class="btn btn-addtable">ADD A TABLE</button>
           </div>
 
         </div>

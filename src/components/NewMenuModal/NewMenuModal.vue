@@ -4,17 +4,17 @@ export default {
   props: {
     category: String,
     toggleModal: Function,
-    item: Object,
+    editInfo: Object,
     reset: Function,
   },
   data: function() {
     return {
       foodItem: {
-        header: this.item ? 'Edit' : 'New',
-        name: this.item ? this.item.name : '',
-        description: this.item ? this.item.description : '',
-        price: this.item ? this.item.price : '',
-        submitButton: this.item ? 'update' : 'add',
+        header: this.editInfo ? 'EDIT' : 'NEW',
+        name: this.editInfo ? this.editInfo.name : '',
+        description: this.editInfo ? this.editInfo.description : '',
+        price: this.editInfo ? this.editInfo.price : '',
+        submitButton: this.editInfo ? 'update' : 'add',
       },
       showModal: false,
       priceInputFocused: false,
@@ -24,6 +24,9 @@ export default {
   mounted() {
     this.showModal = true;
   },
+  beforeDestroy() {
+    this.reset();
+  },
   methods: {
     async handleSubmit() {
       const data = {
@@ -31,15 +34,13 @@ export default {
         description: this.foodItem.description,
         price: Number(this.foodItem.price),
       };
-      if (this.item) {
+      if (this.editInfo) {
         data.id = this.item.id;
         const editedProduct = await this.$store.dispatch('apolloQuery', {
           queryName: 'UPDATE_PRODUCT',
           queryType: 'mutation',
           data: data,
         });
-
-        console.log('send update through apollo');
       } else {
         const addedProduct = await this.$store.dispatch('apolloQuery', {
           queryName: 'ADD_PRODUCT',
@@ -72,7 +73,7 @@ export default {
     <div id="modal" :class="{'modal-visible': showModal}">
       <div class="modal-container">
         <i @click="toggleModal" class="material-icons close-modal">close</i>
-        <h2>{{foodItem.header}} {{category}} ITEM</h2>
+        <h2>{{foodItem.header}} {{category.toUpperCase()}} ITEM</h2>
         <hr>
         <form @submit.prevent="handleSubmit" class="modal-form">
 

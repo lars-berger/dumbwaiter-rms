@@ -123,11 +123,26 @@ const ADD_CATEGORY_TO_PRODUCT = function(product) {
   `;
 };
 
+const UPDATE_PRODUCT = function(product) {
+  return `
+  mutation {
+    updateProduct(
+      id: ${product.id}
+      name: "${product.name}"
+      description: "${product.description}"
+      price: ${parseFloat(product.price)}
+    ) {
+      id
+    }
+  }
+  `;
+};
+
 const ADD_TABLE = function(table) {
   return `
   mutation {
     addTable(
-      name: "fdsafdsa"
+      name: "${table.number}"
       restaurantId: "1"
       width: 20
       height: 20
@@ -178,6 +193,21 @@ const CONNECT_TABLE = function(id) {
   `;
 };
 
+const UPDATE_PRODUCT_STATUS = function(product) {
+  return `
+  mutation {
+    updateOrderProduct(
+      id: ${Number(product.id)}
+      orderId: ${Number(product.orderId)}
+      status: "${product.status}"
+    ) {
+      id
+      status
+    }
+  }  
+  `;
+};
+
 const ACTIVE_CONNECTION_DATA = function() {
   return `
   {
@@ -194,6 +224,8 @@ const ACTIVE_CONNECTION_DATA = function() {
         status
         createdAt
         products {
+          status
+          id
           product {
             name
             price
@@ -229,11 +261,13 @@ export {
   REGISTER_OWNER,
   ADD_PRODUCT,
   ADD_CATEGORY_TO_PRODUCT,
+  UPDATE_PRODUCT,
   DELETE_PRODUCT,
   ADD_TABLE,
   UPDATE_TABLE,
   DELETE_TABLE,
   CONNECT_TABLE,
+  UPDATE_PRODUCT_STATUS,
   UPDATE_PRODUCT,
   ACTIVE_CONNECTION_DATA,
 };
