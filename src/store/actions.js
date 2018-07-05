@@ -25,6 +25,23 @@ export default {
         `,
       });
     }
+
+    function addElement() {
+      // create a new div element
+      var newDiv = document.createElement('div');
+      newDiv.setAttribute('class', 'notification');
+      newDiv.innerHTML = `<i class="material-icons">error_outline</i>
+      <span>&nbsp;&nbsp;&nbsp;New order from Bob Bobson</span>`;
+      // and give it some content
+      // var newContent = document.createTextNode('Hi there and greetings!');
+      // add the text node to the newly created div
+      // newDiv.appendChild(newContent);
+
+      // add the newly created element and its content into the DOM
+      // var currentDiv = document.getElementById('div1');
+      document.body.appendChild(newDiv);
+    }
+
     return await response.data;
   },
   apolloSubscription: async ({ commit }, args) => {
@@ -40,6 +57,24 @@ export default {
       .subscribe({
         next(data) {
           console.log('Subscription response data');
+
+          addElement();
+
+          function addElement() {
+            // create a new div element
+            var newDiv = document.createElement('div');
+            newDiv.setAttribute('class', 'notification');
+            newDiv.innerHTML = `<i class="material-icons">error_outline</i>
+            <span>&nbsp;&nbsp;&nbsp;New order from Bob Bobson</span>`;
+            // and give it some content
+            // var newContent = document.createTextNode('Hi there and greetings!');
+            // add the text node to the newly created div
+            // newDiv.appendChild(newContent);
+
+            // add the newly created element and its content into the DOM
+            // var currentDiv = document.getElementById('div1');
+            document.body.appendChild(newDiv);
+          }
           console.log(data);
         },
       });

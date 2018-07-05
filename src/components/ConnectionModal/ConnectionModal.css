@@ -18,7 +18,7 @@
 
 #modal {
   position: fixed;
-  top: 30%;
+  top: 25%;
   left: 50%;
   transform: translate(-50%, 0);
   width: 40rem;
@@ -26,8 +26,7 @@
   border-radius: 2px;
   z-index: 100;
   padding-bottom: 1.5rem;
-
-  visibility: hidden;
+    visibility: hidden;
   opacity: 0;
 }
 
@@ -80,10 +79,18 @@
   margin-bottom: 2.5rem;
 }
 
+.order-modal-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+  max-height: 37vh;
+  overflow-y: scroll;
+}
+
 .order-item-container {
   display: flex;
-  margin-bottom: 0.5rem;
   justify-content: space-between;
+  margin-bottom: 0.8rem;
 }
 
 .order-item-left, .order-item-right {

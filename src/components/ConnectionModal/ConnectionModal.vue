@@ -1,20 +1,20 @@
 <script>
-  export default {
-    name: 'ordermodal',
-    props: {
-      tableData: Object,
-      handleTableClick: Function,
-    },
-    data: function () {
-      return {
-        showModal: false,
-      };
-    },
-    mounted() {
-      this.showModal = true;
-    },
-    methods: {},
-  };
+export default {
+  name: 'ordermodal',
+  props: {
+    tableData: Object,
+    handleTableClick: Function,
+  },
+  data: function() {
+    return {
+      showModal: false,
+    };
+  },
+  mounted() {
+    this.showModal = true;
+  },
+  methods: {},
+};
 </script>
 
 <template>
@@ -32,8 +32,8 @@
             </div>
 
             <div v-if="!tableData" class="modal-emptystate">NO ORDERS HAVE BEEN PLACED YET</div>
-
-            <div v-else v-for="(orders, index) in tableData.orders" :key="index" class="order-item-container">
+            <div class="order-modal-container">
+            <div v-if="tableData" v-for="(orders, index) in tableData.orders" :key="index" class="">
               <div v-for="(item, index) in orders.products" :key="index" class="order-item-container">
                 <div class="order-item-left">
                   <img class="order-item-img" :src="item.product.photos[0].url">
@@ -50,6 +50,7 @@
                 </div>
               </div>
             </div>
+            </div>
           </div>
         </form>
       </div>
@@ -60,3 +61,4 @@
 </template>
 
 <style src="./ConnectionModal.css" scoped>
+
