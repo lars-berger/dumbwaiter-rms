@@ -28,7 +28,7 @@ export default {
   <div class="Login">
     <div class="container">
       <div class="logo-container">
-        <img class="logo-img" src="@/assets/images/temp-logo2.png" >
+        <img class="logo-img" src="@/assets/images/logo-white.png" >
       </div>
       <div class="card">
         <div class="card-container">

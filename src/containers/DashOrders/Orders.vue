@@ -27,13 +27,6 @@ export default {
     });
     this.orders = this.$store.state.activeOrders;
     // this.completedOrders = this.$store.state.completedOrders;
-    // setInterval(() => {
-    //   this.$store.dispatch('apolloQuery', {
-    //     queryType: 'query',
-    //     queryName: 'ACTIVE_CONNECTION_DATA',
-    //   });
-    //   this.orders = this.$store.state.activeOrders;
-    // });
   },
   methods: {
     toggleModal: function(index) {
