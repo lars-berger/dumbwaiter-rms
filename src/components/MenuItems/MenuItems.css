@@ -1,0 +1,35 @@
+/* ********************************************************* */
+/*                      MENU ITEM                            */
+/* ********************************************************* */
+
+
+.menu-item-card {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  background-color: white;
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
+.menu-item-card-left, .menu-item-card-right {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.menu-item-img {
+  height: 7rem;
+  margin-right: 1rem;
+}
+
+.menu-item-button i {
+  color: white;
+  background-color: #11476e;
+  margin-left: 0.5rem;
+  border-radius: 0.2rem;
+  padding: 0.2rem;
+}
+
+.menu-item-button {
+  /* align-self: flex-end; */
+}

@@ -1,0 +1,113 @@
+
+/* ********************************************************* */
+/*                  ORDER DETAILS MODAL                      */
+/* ********************************************************* */
+
+#mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(155, 155, 155, 0.8);
+  z-index: 50;
+
+  visibility: hidden;
+  opacity: 0;
+}
+
+#modal {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 40rem;
+  background: #f7f7f7;
+  border-radius: 2px;
+  z-index: 100;
+  padding-bottom: 1.5rem;
+
+  visibility: hidden;
+  opacity: 0;
+}
+
+.modal-visible {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.modal-container {
+  width: 94%;
+  margin: 0 auto;
+}
+
+.close-modal {
+  float: right;
+  cursor: pointer;
+  font-size: 1.8rem;
+}
+
+.modal-container h2 {
+  margin-bottom: 0.8rem;
+}
+
+.modal-container hr {
+  margin-bottom: 1.3rem;
+}
+
+.form-field {
+  margin-bottom: 1.5em;
+}
+
+.addnew-label {
+  margin-bottom: 0.5em;
+}
+
+.addnew-submit {
+  float: right;
+  font-size: 1em;
+  width: 8rem;
+}
+
+.modal-inputs-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.btn-markcomplete {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.order-item-container {
+  display: flex;
+  margin-bottom: 0.5rem;
+  justify-content: space-between;
+}
+
+.order-item-left, .order-item-right {
+  display: flex;
+  flex-basis: 50%;
+  margin-bottom: 0.5rem;
+}
+
+.order-item-img {
+  height: 2.7rem;
+  width: 2.7rem;
+}
+
+.btn-markstatus {
+  margin-left: 1rem;
+  padding: 0.3rem 0.5rem;
+  height: 1.2rem;
+  font-size: 0.8rem;
+  background-color: #1b537a;
+  display: flex;
+  align-items: center;
+}
+
+.btn-markstatus i {
+  font-size: 1.1rem;
+  margin-right: 0.2rem;
+}

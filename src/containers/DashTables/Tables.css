@@ -1,0 +1,24 @@
+.Dashboard {
+  height: 100vh;
+}
+
+.divider {
+  height: 0.17rem;
+  background-color: black;
+  margin: 0.8rem 0;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.right-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.btn-addtable {
+  margin: 0 auto;
+  width: 70%;
+}
