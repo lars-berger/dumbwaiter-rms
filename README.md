@@ -23,9 +23,9 @@ npm install
 ```
 
 3. Config file
-```
+
 Replace the websocketURI and serverURI in the config.js file. The server set up can be found at [here](https://github.com/edgarcheverier/dumbwaiter-server). 
-```
+
 
 4. Start development server
 ```
