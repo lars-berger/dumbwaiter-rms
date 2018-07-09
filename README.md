@@ -6,15 +6,15 @@
 
 ----
 
-Smart Waiter customer side is a app which allows you to locate a restaurant, browse the menu, order and pay for a meal all from one single page application, ideal for those short on time who aren't able to be delayed by busy restaurant staff, or payment disputes. Just choose, click, eat and go.
+Smart Waiter customer side is an app which allows you to locate a restaurant, browse the menu, order and pay for a meal all from one single page application, ideal for those short on time who aren't able to be delayed by busy restaurant staff, or payment disputes. Just choose, click, eat and go.
 
 ## Getting started
 
 1. Clone the repo
 
 ```
-https://github.com/lars-berger/dumbwaiter-rms
-cd dumbwaiter-customer
+https://github.com/lars-berger/smartwaiter-rms.git
+cd smartwaiter-rms
 ```
 
 2. Install dependencies
@@ -22,15 +22,14 @@ cd dumbwaiter-customer
 npm install
 ```
 
-3. Facebook developers
+3. Config file
 ```
-create a new app in facebook developers (https://developers.facebook.com/)
-in src/components/Login/FacebookLogin.vue replace the appId for your app id
+Replace the websocketURI and serverURI in the config.js file. The server set up can be found at [here](https://github.com/edgarcheverier/dumbwaiter-server). 
 ```
 
 4. Start development server
 ```
-npm run serve
+npm start
 
 ```
 ## Built with
@@ -39,11 +38,11 @@ npm run serve
 * [Vuex](https://vuex.vuejs.org/) - Vuex is a state management pattern + library for Vue.js applications.
 * [Apollo](https://github.com/Akryum/vue-apollo) - Apollo and GraphQL for Vue.js
 
-## Contributing
+## Contributions
 
 Improvements are welcome!
 
-Fork the repo and do your thing. Push to your fork and submit a pull request.
+Fork the repo and make your changes. Push to your fork and submit a pull request.
 
 ## Author
 
