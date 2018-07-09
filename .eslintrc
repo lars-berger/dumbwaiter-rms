@@ -1,0 +1,51 @@
+{
+  "root": true,
+  "parserOptions": {
+    "sourceType": "module",
+    "parser": "babel-eslint",
+    "ecmaVersion": 2017
+  },
+  "env": {
+    "browser": true
+  },
+  "extends": [
+    "prettier",
+    "prettier/standard",
+    "plugin:vue/essential"
+  ],
+  "plugins": [
+    "vue",
+    "prettier"
+  ],
+  "rules": {
+    "vue/require-default-prop": 0,
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "ignore",
+        "objects": "ignore",
+        "imports": "ignore",
+        "exports": "ignore",
+        "functions": "ignore"
+      }
+    ],
+    "prettier/prettier": "error",
+    "curly": [
+      "error",
+      "all"
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 200,
+        "ignoreUrls": true
+      }
+    ],
+    "no-mixed-operators": "error",
+    "no-unexpected-multiline": "error",
+    "quotes": [
+      "error",
+      "single"
+    ]
+  }
+}

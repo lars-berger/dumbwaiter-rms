@@ -1,0 +1,94 @@
+#tables-container {
+  position: relative;
+  min-height: 77vh;
+  min-width: 77vh;
+  background-color: white;
+  border: 1.5px solid rgb(228, 228, 228);
+}
+
+.table {
+  position: absolute !important;
+  /* top: 19.17%;
+  left: 26.64%;
+  width: 43.69%;
+  height: 32.42%; */
+  border: 0.15rem solid #11476e;
+  color: #11476e !important;
+  border-radius: 2px;
+  background-color: rgb(249, 249, 249);
+  /* margin: -0.15rem; */
+  cursor: pointer;
+}
+
+#resizable {
+  position: relative;
+  color: rgb(34, 34, 34);
+  border: 2px solid rgb(34, 34, 34);
+}
+
+.table-code {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 35%;
+  text-align: center;
+  font-size: 1.7rem;
+}
+
+.resize-icon {
+  border-bottom-right-radius: 2px;
+  color: white;
+  border: none;
+  margin-top: -0.2px;
+  margin-left: -0.2px;
+  z-index: 5;
+}
+
+.resize-icon i {
+  font-size: 1.2rem;
+}
+
+.resize-icon.stop {
+  background-color: rgb(34, 34, 34);
+}
+
+.resize-icon.start {
+  background-color: #11476e;
+}
+
+/* DROPDOWN ON CLICK */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  border: 0.5px solid rgb(202, 202, 202);
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: rgb(104, 104, 104);
+  font-size: 0.9rem;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-bottom: 0.5px solid rgb(202, 202, 202);
+}
+
+.dropdown a:hover {
+  background-color: rgb(241, 241, 241);
+}
+
+.show {
+  display: block;
+}
